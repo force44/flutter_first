@@ -32,7 +32,7 @@ class IndexScreenState extends State<IndexScreen> {
         iconSize: 44,
         selectedItemColor: Colors.yellow,
         unselectedItemColor: Colors.grey,
-        selectedLabelStyle: const TextStyle(fontSize: 12),
+        selectedLabelStyle: TextStyle(fontSize: 12),
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
