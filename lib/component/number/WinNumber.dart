@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class WinNumber extends StatelessWidget{
 
-  final String numberText;
+  final int number;
 
   WinNumber(
-     this.numberText, {
+     this.number, {
      super.key,
   });
 
@@ -25,7 +25,7 @@ class WinNumber extends StatelessWidget{
 
    @override
    Widget build(BuildContext context) {
-     Color color = _getNumberColor(int.parse(numberText));
+     Color color = _getNumberColor(number);
      return Container(
          margin: const EdgeInsets.all(10.0),
          padding: const EdgeInsets.all(10.0),
@@ -34,7 +34,7 @@ class WinNumber extends StatelessWidget{
            borderRadius: BorderRadius.circular(360),
            border: Border.all(color: Colors.black12, width: 1),
          ),
-         child: Text(numberText,
+         child: Text( number.toString(),
                     style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center)
      );
    }

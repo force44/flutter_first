@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 
 import 'package:provider/provider.dart';
+import '../klass/Lotto.dart';
 import '../provider/TestProvider.dart';
 
 import '../component/number/WinNumber.dart';
@@ -13,18 +16,22 @@ class TabLuck extends StatelessWidget{
 
   //const TabLuck({Key? key}) : super(key: key);
 
-  void _callAPI() async {
-    var url = Uri.parse(
-      'https://raw.githubusercontent.com/dev-yakuza/users/master/api.json',
-    );
-    var response = await http.get(url);
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
 
-  }
 
   @override
   Widget build(BuildContext context) {
+
+    var text_a = "1111";
+
+    var number_1 =  0;
+    var number_2 =  0;
+    var number_3 =  0;
+    var number_4 =  0;
+    var number_5 =  0;
+    var number_6 =  0;
+
+
+
     return Center(
       child: ChangeNotifierProvider(create: (BuildContext context) => TestProvider(),
       child:  Column(
@@ -51,9 +58,10 @@ class TabLuck extends StatelessWidget{
                       width: 300,
                       child: Column(
                           children:  [
-                            Text("나의 1등 목표", style: TextStyle(fontSize: 15.0, fontWeight:FontWeight.w700)),
+                            Text(text_a, style: TextStyle(fontSize: 15.0, fontWeight:FontWeight.w700)),
                             Text("오늘도 푹자고", style: TextStyle(fontSize: 12.0), textAlign:TextAlign.left),
-                            TextButton( onPressed: (){ context.read<TestProvider>().increase();}
+                            TextButton(
+                                onPressed: (){ context.read<TestProvider>().increase();}
                                 , child: Text(context.watch<TestProvider>().count.toString()))
                           ]
                       )
@@ -96,14 +104,12 @@ class TabLuck extends StatelessWidget{
               ),
                 child: Row(
                   children: [
-                    WinNumber("01"),
-                    WinNumber("10"),
-                    WinNumber("15"),
-                    WinNumber("25"),
-                    WinNumber("35"),
-                    WinNumber("39"),
-                    Text("+"),
-                    WinNumber("43"),
+                    WinNumber(context.watch<TestProvider>().lottoNumber[0]),
+                    WinNumber(context.watch<TestProvider>().lottoNumber[1]),
+                    WinNumber(context.watch<TestProvider>().lottoNumber[2]),
+                    WinNumber(context.watch<TestProvider>().lottoNumber[3]),
+                    WinNumber(context.watch<TestProvider>().lottoNumber[4]),
+                    WinNumber(context.watch<TestProvider>().lottoNumber[5])
                   ],
                 )
             )
