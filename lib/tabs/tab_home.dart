@@ -40,7 +40,7 @@ class TabHome extends StatelessWidget{
                         children: [
                           Container(
                             width: 50,
-                            height: 50,
+                            height: 60,
                              margin: const EdgeInsets.all(1.0),
                             // padding: const EdgeInsets.all(10.0),
                             decoration: BoxDecoration(
@@ -51,7 +51,7 @@ class TabHome extends StatelessWidget{
                           ),
                           Container(
                               width: 50,
-                              height: 50,
+                              height: 60,
                                margin: const EdgeInsets.all(1.0),
                               // padding: const EdgeInsets.all(10.0),
                               decoration: BoxDecoration(

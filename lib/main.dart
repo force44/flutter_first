@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_first/provider/TestProvider.dart';
+import 'package:flutter_first/provider/LottoProvider.dart';
 import 'screen_index.dart';
 import 'package:provider/provider.dart';
 
@@ -7,7 +7,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => TestProvider()),
+        ChangeNotifierProvider(create: (_) => LottoProvider()),
       ],
       child: MyApp(),
     ),
