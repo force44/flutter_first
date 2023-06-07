@@ -14,10 +14,22 @@ class Lotto{
     print(">>>>>>>>>>>>>>>>>>>>>> default");
   }
 
-  Lotto.init(this.lottoNumbers, this.countByWinNumbers, this.historyGrade, this.numberSum, this.oddAndEvenRate);
+  Lotto.init(this.turn
+      , this.lottoNumbers
+      , this.countByWinNumbers
+      , this.historyGrade
+      , this.numberSum
+      , this.oddAndEvenRate
+      , this.transferNumber);
 
   factory Lotto.fromJson(Map<String, dynamic> json) {
-    return Lotto.init(json['lottoNumbers'], json['countByWinNumbers'], json['historyGrade'], json['numberSum'], json['oddAndEvenRate']);
+    return Lotto.init(json['turn']
+        , json['lottoNumbers']
+        , json['countByWinNumbers']
+        , json['historyGrade']
+        , json['numberSum']
+        , json['oddAndEvenRate']
+        , json['transferNumber']);
   }
 }
 
