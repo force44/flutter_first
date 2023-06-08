@@ -24,45 +24,45 @@ class TabHome extends StatelessWidget{
                 ],
               ),
               child: Row(
-                children: [
+                children: const [
                   SizedBox(
-                      width: 300,
+                      width: 280,
                       child: Column(
-                        children: const [
-                          Text("나의 1등 목표", style: TextStyle(fontSize: 15.0, fontWeight:FontWeight.w700)),
+                        children: [
+                          Text("나의 목표", style: TextStyle(fontSize: 15.0, fontWeight:FontWeight.w700)),
                           Text("오늘도 푹자고", style: TextStyle(fontSize: 12.0), textAlign:TextAlign.left),
                           Text("상쾌한 하루 보내세요.", style: TextStyle(fontSize: 12.0), textAlign:TextAlign.left)
                       ]
                       )
                   ),
-                  SizedBox(
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 50,
-                            height: 60,
-                             margin: const EdgeInsets.all(1.0),
-                            // padding: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.black12, width: 1),
-                            ),
-                            child: Center( child: Text("07h", style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center))
-                          ),
-                          Container(
-                              width: 50,
-                              height: 60,
-                               margin: const EdgeInsets.all(1.0),
-                              // padding: const EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: Colors.black12, width: 1),
-                              ),
-                              child: Center( child: Text("30m", style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center))
-                          ),
-                        ],
-                      )
-                  )
+                  // SizedBox(
+                  //     child: Row(
+                  //       children: [
+                  //         Container(
+                  //           width: 50,
+                  //           height: 60,
+                  //            margin: const EdgeInsets.all(1.0),
+                  //           // padding: const EdgeInsets.all(10.0),
+                  //           decoration: BoxDecoration(
+                  //             borderRadius: BorderRadius.circular(10),
+                  //             border: Border.all(color: Colors.black12, width: 1),
+                  //           ),
+                  //           child: Center( child: Text("07h", style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center))
+                  //         ),
+                  //         Container(
+                  //             width: 50,
+                  //             height: 60,
+                  //              margin: const EdgeInsets.all(1.0),
+                  //             // padding: const EdgeInsets.all(10.0),
+                  //             decoration: BoxDecoration(
+                  //               borderRadius: BorderRadius.circular(10),
+                  //               border: Border.all(color: Colors.black12, width: 1),
+                  //             ),
+                  //             child: Center( child: Text("30m", style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center))
+                  //         ),
+                  //       ],
+                  //     )
+                  // )
                 ],
               ),
             ),

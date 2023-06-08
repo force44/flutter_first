@@ -7,7 +7,7 @@ class WinNumber extends StatelessWidget{
   WinNumber(
      this.lottoNumber, {
      super.key,
-  });
+});
 
   Color _getNumberColor(int number){
     Color color = const Color(0xfffbc400);
@@ -43,14 +43,14 @@ class WinNumber extends StatelessWidget{
   // 번호 하나의 플랫폼
   Container layOutNumber(int number, String numberTxt){
     return Container(
-        margin: const EdgeInsets.all(10.0),
-        padding: const EdgeInsets.all(10.0),
+        margin: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4.0),
         decoration: BoxDecoration(
           color: _getNumberColor(number),
           borderRadius: BorderRadius.circular(360),
           border: Border.all(color: Colors.black12, width: 1),
         ),
-        child: Text(numberTxt, style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center)
+        child: Text(numberTxt, style: TextStyle(fontWeight:FontWeight.w500), textAlign:TextAlign.center)
     );
   }
 

@@ -25,8 +25,8 @@ class CountWinNumber extends StatelessWidget{
   // 번호 하나의 플랫폼
   Container layOutNumber(int number){
     return Container(
-        margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-        padding: const EdgeInsets.all(5.0),
+        margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+        //padding: const EdgeInsets.all(5.0),
         // decoration: BoxDecoration(
         //   color: _getNumberColor(number),
         //   borderRadius: BorderRadius.circular(360),
