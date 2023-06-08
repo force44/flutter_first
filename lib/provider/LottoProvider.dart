@@ -73,7 +73,7 @@ class LottoProvider with ChangeNotifier {
   void suggestionLotto(String seed, String form, String to) {
 
     print("$seed , $form, $to");
-    _requestSuggestionLotto(seed, form, to);
+    _requestSuggestionLotto("12", "1000", "1070");
   }
 
   void saveLotto() {

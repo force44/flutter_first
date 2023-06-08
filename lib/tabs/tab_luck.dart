@@ -1,11 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-
-
-
 import 'package:provider/provider.dart';
 import '../component/number/CountWinNumber.dart';
 import '../provider/LottoProvider.dart';
@@ -18,7 +13,7 @@ class TabLuck extends StatefulWidget {
 }
 
 class _TabLuck extends State<TabLuck> {
-//  const TabLuck({super.key});
+  //const TabLuck({super.key});
   //const TabLuck({Key? key}) : super(key: key);
 
   @override
