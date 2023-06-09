@@ -8,6 +8,8 @@ import '../component/number/WinNumber.dart';
 
 
 class TabLuck extends StatefulWidget {
+  const TabLuck({super.key});
+
   @override
   _TabLuck createState() => _TabLuck();
 }
@@ -16,11 +18,12 @@ class _TabLuck extends State<TabLuck> {
   //const TabLuck({super.key});
   //const TabLuck({Key? key}) : super(key: key);
 
+  String seed = '';
+  String from = '';
+  String to = '';
+
   @override
   Widget build(BuildContext context) {
-    String seed = '';
-    String from = '';
-    String to = '';
 
     return Center(
         child: ChangeNotifierProvider(
@@ -121,10 +124,10 @@ class _TabLuck extends State<TabLuck> {
                             child: Center(
                                 child: OutlinedButton(
                                     onPressed: () {
-                                      context.read<LottoProvider>().suggestionLotto(seed, from, to);
+                                      context.read<LottoProvider>().suggestionLotto(from, to, seed: seed);
                                     },
                                     style: OutlinedButton.styleFrom(foregroundColor: Colors.redAccent),
-                                    child: Center( child: Text( 'Luck!!', style: TextStyle(fontWeight:FontWeight.w900) ))
+                                    child: Center( child: Text( 'Good\nLuck!', style: TextStyle(fontWeight:FontWeight.w900) ))
 
                                 )
                             )

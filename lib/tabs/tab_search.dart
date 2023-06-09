@@ -110,8 +110,7 @@ class _TabSearch extends  State<TabSearch> {
                                 child: Center(
                                     child: OutlinedButton(
                                         onPressed: () {
-                                          context.read<LottoProvider>()
-                                              .suggestionLotto(seed, from, to);
+                                          //context.read<LottoProvider>().suggestionLotto(seed, from, to);
                                         },
                                         style: OutlinedButton.styleFrom(
                                             foregroundColor: Colors.redAccent),

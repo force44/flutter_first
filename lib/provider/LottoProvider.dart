@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import '../component/utils/Constant.dart';
 import '../klass/Lotto.dart';
 import 'package:http/http.dart' as http;
 
@@ -29,7 +30,7 @@ class LottoProvider with ChangeNotifier {
     var paramData = json.encode( {"from" : form, "to" : to, "seed" : seed});
     var response = await http.post(
         url,
-        headers: {"Content-Type": "application/json;charset=UTF-8"},
+        headers: Constant.httpHeaders,
         body: paramData
     );
 
@@ -70,7 +71,7 @@ class LottoProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void suggestionLotto(String seed, String form, String to) {
+  void suggestionLotto(String form, String to, {String seed="12"}) {
 
     print("$seed , $form, $to");
     _requestSuggestionLotto("12", "1000", "1070");
