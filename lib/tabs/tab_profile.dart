@@ -13,9 +13,9 @@ class TabProfile extends StatefulWidget {
 
 
 class _TabProfile extends State<TabProfile>{
-
   String turn = '';
-
+  final List<String> _valueList = ['All', 'Buy', 'Skip'];
+  String _selectedValue = 'All';
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -50,21 +50,41 @@ class _TabProfile extends State<TabProfile>{
                           width: 170,
                           child: Row(
                               children: [
+                                // Container(
+                                //   width: 60,
+                                //   margin: const EdgeInsets.all(5.0),
+                                //   child:
+                                //       TextField(
+                                //           onChanged: (text) {
+                                //             setState(() {
+                                //               turn = text;
+                                //             });
+                                //           }
+                                //           //, maxLength : 4
+                                //           ,inputFormatters:[LengthLimitingTextInputFormatter(4)]
+                                //           ,decoration: const InputDecoration(labelText: '회차')
+                                //       )
+                                //   )
+                                // ,
+
                                 Container(
-                                  width: 100,
-                                  margin: const EdgeInsets.all(5.0),
-                                  child: TextField(
-                                    //    controller: seed,
-                                      onChanged: (text) {
-                                        setState(() {
-                                          turn = text;
-                                        });
-                                      }
-                                      //, maxLength : 4
-                                      ,inputFormatters:[LengthLimitingTextInputFormatter(4)]
-                                      ,decoration: InputDecoration(
-                                    labelText: '회차',
-                                  )),
+                                    //width: 120,
+                                    margin: const EdgeInsets.all(5.0),
+                                    child:
+                                      DropdownButton(
+                                                value: _selectedValue,
+                                                items: _valueList.map((value) {
+                                                  return DropdownMenuItem(
+                                                    value: value,
+                                                    child: Text(value),
+                                                  );
+                                                }).toList(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    _selectedValue = value!;
+                                                  });
+                                                },
+                                              ),
                                 )
                               ]
                           )
@@ -94,15 +114,15 @@ class _TabProfile extends State<TabProfile>{
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.black12, width: 1),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
+                      border: Border.all(color: Colors.blueAccent, width: 1),
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //     color: Colors.grey.withOpacity(0.5),
+                      //     spreadRadius: 1,
+                      //     blurRadius: 4,
+                      //     offset: Offset(0, 3), // changes position of shadow
+                      //   ),
+                      // ],
                     ),
                     child:  Column(
                         children:

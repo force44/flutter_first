@@ -114,7 +114,7 @@ class _TabSearch extends  State<TabSearch> {
                                         },
                                         style: OutlinedButton.styleFrom(
                                             foregroundColor: Colors.redAccent),
-                                        child: Center(child: Text('❤︎❤︎',
+                                        child: Center(child: Text('❤❤︎',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w900)))
 

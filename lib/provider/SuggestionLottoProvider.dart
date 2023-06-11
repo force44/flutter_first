@@ -17,7 +17,7 @@ class SuggestionLottoProvider with ChangeNotifier {
       'http://localhost:81/lotto-suggestion/list',
     );
 
-    var paramData = json.encode( {"filter" : { "pageIndex" : 0, "pageSize" : 10}});
+    var paramData = json.encode( {"filter" : { "pageIndex" : 0, "pageSize" : 100}});
     var response = await http.post(
         url,
         headers: Constant.httpHeaders,

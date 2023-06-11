@@ -30,6 +30,7 @@ class SuggestionNumber extends StatelessWidget{
     List<SizedBox> sizeBox = [];
     for(Lotto lotto in list){
       List<Container> numbers = [];
+      numbers.add(layOutTurn(lotto.turn));
       numbers.add(layOutNumber(lotto.first));
       numbers.add(layOutNumber(lotto.second));
       numbers.add(layOutNumber(lotto.third));
@@ -41,9 +42,21 @@ class SuggestionNumber extends StatelessWidget{
      return sizeBox;
   }
 
+  Container layOutTurn(int number){
+    return Container(
+        width: 60,
+        margin: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.black12, width: 1),
+        ),
+        child: Text( "${number.toString()}회", style: const TextStyle(fontWeight:FontWeight.w500), textAlign:TextAlign.center)
+    );
+  }
+
   // 번호 하나의 플랫폼
   Container layOutNumber(int number){
-
     String numberTxt = number.toString();
     if(number < 9) {
       numberTxt = "0$numberTxt";      // 일의 자리는 0을 붙여 준다.
@@ -56,14 +69,22 @@ class SuggestionNumber extends StatelessWidget{
           borderRadius: BorderRadius.circular(360),
           border: Border.all(color: Colors.black12, width: 1),
         ),
-        child: Text(numberTxt, style: TextStyle(fontWeight:FontWeight.w500), textAlign:TextAlign.center)
+        child: Text(numberTxt, style: const TextStyle(fontWeight:FontWeight.w400), textAlign:TextAlign.center)
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        child: Column(children: _getLottoNumber())
-    );
+    return
+            SizedBox(
+                child:
+                        Center(
+                            child:Column(
+                               mainAxisSize: MainAxisSize.min,
+                                children: _getLottoNumber()
+                            )
+                        )
+            );
+
   }
 }
