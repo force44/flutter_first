@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-class WinNumber extends StatelessWidget{
+import '../../klass/Lotto.dart';
 
-  final List lottoNumber;
+class SuggestionNumber extends StatelessWidget{
 
-  WinNumber(
-     this.lottoNumber, {
+  final List list;
+
+  SuggestionNumber(
+     this.list, {
      super.key,
-});
+  });
 
   Color _getNumberColor(int number){
     Color color = const Color(0xfffbc400);
@@ -24,25 +26,28 @@ class WinNumber extends StatelessWidget{
   }
 
   // 추천 번호들 나래비!
-  SizedBox _getLottoNumber() {
-    List<Container> numbers = [];
-    for(var i = 0; i < lottoNumber.length; i ++){
-      numbers.add(layOutNumber(lottoNumber[i]));
+  List<SizedBox> _getLottoNumber() {
+    List<SizedBox> sizeBox = [];
+    for(Lotto lotto in list){
+      List<Container> numbers = [];
+      numbers.add(layOutNumber(lotto.first));
+      numbers.add(layOutNumber(lotto.second));
+      numbers.add(layOutNumber(lotto.third));
+      numbers.add(layOutNumber(lotto.fourth));
+      numbers.add(layOutNumber(lotto.fifth));
+      numbers.add(layOutNumber(lotto.sixth));
+      sizeBox.add(SizedBox(child: Row(children: numbers)));
     }
-
-    return SizedBox(
-        child: Row(children: numbers)
-    );
+     return sizeBox;
   }
 
   // 번호 하나의 플랫폼
   Container layOutNumber(int number){
 
-    var numberTxt = number.toString();
+    String numberTxt = number.toString();
     if(number < 9) {
       numberTxt = "0$numberTxt";      // 일의 자리는 0을 붙여 준다.
     }
-
     return Container(
         margin: const EdgeInsets.all(4.0),
         padding: const EdgeInsets.all(4.0),
@@ -57,7 +62,8 @@ class WinNumber extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return _getLottoNumber();
+    return SizedBox(
+        child: Column(children: _getLottoNumber())
+    );
   }
-
 }

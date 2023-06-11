@@ -2,34 +2,39 @@
 
 
 class Lotto{
+  int id = 0;
   int turn = 0;
-  String oddAndEvenRate = "";
-  int numberSum = 0;
-  String transferNumber = "";
-  List lottoNumbers = List<int>.filled(6, 0);
-  List countByWinNumbers = List<int>.filled(6, 0);
-  List historyGrade = List<int>.filled(6, 0);
+  int first = 0;
+  int second = 0;
+  int third = 0;
+  int fourth = 0;
+  int fifth = 0;
+  int sixth = 0;
 
-  Lotto(){
+  LottoList(){
     print(">>>>>>>>>>>>>>>>>>>>>> default");
   }
 
-  Lotto.init(this.turn
-      , this.lottoNumbers
-      , this.countByWinNumbers
-      , this.historyGrade
-      , this.numberSum
-      , this.oddAndEvenRate
-      , this.transferNumber);
+  Lotto.init(this.id
+      , this.turn
+      , this.first
+      , this.second
+      , this.third
+      , this.fourth
+      , this.fifth
+      , this.sixth
+      );
 
   factory Lotto.fromJson(Map<String, dynamic> json) {
-    return Lotto.init(json['turn']
-        , json['lottoNumbers']
-        , json['countByWinNumbers']
-        , json['historyGrade']
-        , json['numberSum']
-        , json['oddAndEvenRate']
-        , json['transferNumber']);
+    return Lotto.init(json['id']
+        , json['turn']
+        , json['first']
+        , json['second']
+        , json['third']
+        , json['fourth']
+        , json['fifth']
+        , json['sixth']
+    );
   }
 }
 

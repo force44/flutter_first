@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import '../component/utils/Constant.dart';
-import '../klass/Lotto.dart';
+import '../klass/LottoStat.dart';
 import 'package:http/http.dart' as http;
 
-class LottoProvider with ChangeNotifier {
+class LottoStatProvider with ChangeNotifier {
   int _count = 0;
   int _numberSum = 0;
   int _turn = 0;
@@ -35,7 +35,7 @@ class LottoProvider with ChangeNotifier {
     );
 
     Map<String, dynamic> jsonData = jsonDecode(response.body);
-    Lotto lotto = Lotto.fromJson(jsonData['data']);
+    LottoStat lotto = LottoStat.fromJson(jsonData['data']);
 
     _lottoNumber = lotto.lottoNumbers;
     _countByWinNumbers = lotto.countByWinNumbers;
@@ -67,13 +67,10 @@ class LottoProvider with ChangeNotifier {
         body: paramData
     );
     ++_count;
-
     notifyListeners();
   }
 
   void suggestionLotto(String form, String to, {String seed="12"}) {
-
-    print("$seed , $form, $to");
     _requestSuggestionLotto("12", "1000", "1070");
   }
 
