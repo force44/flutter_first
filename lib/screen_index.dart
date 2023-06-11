@@ -25,12 +25,12 @@ class IndexScreenState extends State<IndexScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( backgroundColor: Colors.yellow, title: const Text('WIN')),
+      appBar: AppBar( backgroundColor: Colors.blueAccent, title: const Text('WIN')),
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         iconSize: 44,
-        selectedItemColor: Colors.yellow,
+        selectedItemColor: Colors.blueAccent,
         unselectedItemColor: Colors.grey,
         selectedLabelStyle: TextStyle(fontSize: 12),
         currentIndex: _currentIndex,

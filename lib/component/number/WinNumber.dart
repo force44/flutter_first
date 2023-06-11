@@ -27,12 +27,7 @@ class WinNumber extends StatelessWidget{
   SizedBox _getLottoNumber() {
     List<Container> numbers = [];
     for(var i = 0; i < lottoNumber.length; i ++){
-      var number = lottoNumber[i];
-      var numberTxt = number.toString();
-      if(number < 9) {
-        numberTxt = "0$numberTxt";      // 일의 자리는 0을 붙여 준다.
-      }
-      numbers.add(layOutNumber(number, numberTxt));
+      numbers.add(layOutNumber(lottoNumber[i]));
     }
 
     return SizedBox(
@@ -41,7 +36,13 @@ class WinNumber extends StatelessWidget{
   }
 
   // 번호 하나의 플랫폼
-  Container layOutNumber(int number, String numberTxt){
+  Container layOutNumber(int number){
+
+    var numberTxt = number.toString();
+    if(number < 9) {
+      numberTxt = "0$numberTxt";      // 일의 자리는 0을 붙여 준다.
+    }
+
     return Container(
         margin: const EdgeInsets.all(4.0),
         padding: const EdgeInsets.all(4.0),

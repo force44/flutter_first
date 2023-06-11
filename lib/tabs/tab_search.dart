@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../component/number/CountWinNumber.dart';
-import '../provider/LottoProvider.dart';
+import '../provider/LottoStatProvider.dart';
 import '../component/number/WinNumber.dart';
 
 
@@ -25,7 +25,7 @@ class _TabSearch extends  State<TabSearch> {
 
     return Center(
         child: ChangeNotifierProvider(
-            create: (BuildContext context) => LottoProvider(),
+            create: (BuildContext context) => LottoStatProvider(),
             child: Column(
                 children: [
                   Container(
@@ -110,11 +110,11 @@ class _TabSearch extends  State<TabSearch> {
                                 child: Center(
                                     child: OutlinedButton(
                                         onPressed: () {
-                                          //context.read<LottoProvider>().suggestionLotto(seed, from, to);
+                                          //context.read<LottoStatProvider>().suggestionLotto(seed, from, to);
                                         },
                                         style: OutlinedButton.styleFrom(
                                             foregroundColor: Colors.redAccent),
-                                        child: Center(child: Text('❤︎❤︎',
+                                        child: Center(child: Text('❤❤︎',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w900)))
 
@@ -147,7 +147,7 @@ class _TabSearch extends  State<TabSearch> {
                             Row(
                               children: [
                                 WinNumber(context
-                                    .watch<LottoProvider>()
+                                    .watch<LottoStatProvider>()
                                     .lottoNumber) // 추천 번호
                                 , SizedBox(
                                     width: 80,
@@ -157,7 +157,7 @@ class _TabSearch extends  State<TabSearch> {
                                           //margin: const EdgeInsets.fromLTRB(0, 0, 10, 5),
                                             child: OutlinedButton(
                                                 onPressed: () {
-                                                  context.read<LottoProvider>()
+                                                  context.read<LottoStatProvider>()
                                                       .saveLotto();
                                                 },
                                                 style: OutlinedButton.styleFrom(
@@ -172,7 +172,7 @@ class _TabSearch extends  State<TabSearch> {
                                         ),
 
                                         Text("count : ${context
-                                            .watch<LottoProvider>()
+                                            .watch<LottoStatProvider>()
                                             .count}"
                                             , style: TextStyle(
                                               fontWeight: FontWeight.w400,)
@@ -210,7 +210,7 @@ class _TabSearch extends  State<TabSearch> {
                                   style: TextStyle(fontWeight: FontWeight.w800),
                                   textAlign: TextAlign.center),
                               CountWinNumber(context
-                                  .watch<LottoProvider>()
+                                  .watch<LottoStatProvider>()
                                   .countByWinNumbers)
                             ],
                           ),
@@ -224,7 +224,7 @@ class _TabSearch extends  State<TabSearch> {
                                           .w700), textAlign: TextAlign.center),
                                   SizedBox(width: 60,
                                       child: Text(" ${context
-                                          .watch<LottoProvider>()
+                                          .watch<LottoStatProvider>()
                                           .oddAndEvenRate} "
                                           , style: TextStyle(
                                               color: Colors.blueAccent))
@@ -234,7 +234,7 @@ class _TabSearch extends  State<TabSearch> {
                                           .w700), textAlign: TextAlign.center),
                                   SizedBox(width: 60,
                                       child: Text(" ${context
-                                          .watch<LottoProvider>()
+                                          .watch<LottoStatProvider>()
                                           .numberSum
                                           .toString()}"
                                           , style: TextStyle(
@@ -244,7 +244,7 @@ class _TabSearch extends  State<TabSearch> {
                                       style: TextStyle(fontWeight: FontWeight
                                           .w700), textAlign: TextAlign.center),
                                   Text(" ${context
-                                      .watch<LottoProvider>()
+                                      .watch<LottoStatProvider>()
                                       .transferNumber}개",
                                       style: TextStyle(color: Colors
                                           .blueAccent)),
@@ -257,19 +257,19 @@ class _TabSearch extends  State<TabSearch> {
                                   style: TextStyle(fontWeight: FontWeight.w700),
                                   textAlign: TextAlign.center),
                               Text("1(${context
-                                  .watch<LottoProvider>()
+                                  .watch<LottoStatProvider>()
                                   .historyGrade[0]}) "
                                   "2(${context
-                                  .watch<LottoProvider>()
+                                  .watch<LottoStatProvider>()
                                   .historyGrade[1]}) "
                                   "3(${context
-                                  .watch<LottoProvider>()
+                                  .watch<LottoStatProvider>()
                                   .historyGrade[2]}) "
                                   "4(${context
-                                  .watch<LottoProvider>()
+                                  .watch<LottoStatProvider>()
                                   .historyGrade[3]}) "
                                   "5(${context
-                                  .watch<LottoProvider>()
+                                  .watch<LottoStatProvider>()
                                   .historyGrade[4]}) "
                               )
                             ],
