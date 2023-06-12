@@ -12,31 +12,29 @@ class SuggestionLottoProvider with ChangeNotifier {
 
    List get suggestionLotto => _list;
 
-  void _requestSuggestionLottoList() async {
+  void _requestSuggestionLottoList(String? type) async {
     var url = Uri.parse(
-      'http://localhost:81/lotto-suggestion/list',
+        "${Constant.url}/lotto-suggestion/list",
     );
 
-    var paramData = json.encode( {"filter" : { "pageIndex" : 0, "pageSize" : 100}});
+    var paramData = json.encode( { "keyWord": type, "filter" : { "pageIndex" : 0, "pageSize" : 100}});
     var response = await http.post(
         url,
         headers: Constant.httpHeaders,
         body: paramData
     );
 
-
     _list = List<Lotto>.empty(growable:true);
-    Map<String, dynamic> jsonData = jsonDecode(response.body);
+    Map<String, dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
     List<dynamic> jj = jsonData['data']['lists'];
+    print(jj);
      for(dynamic lotto in jj){
          _list.add(Lotto.fromJson(lotto));
      }
-     print(_list);
-    //Lotto lotto = Lotto.fromJson(jsonData['data']);
     notifyListeners();
   }
 
-  void searchList(String turn) {
-    _requestSuggestionLottoList();
+  void searchList(String type) {
+    _requestSuggestionLottoList(type);
   }
 }

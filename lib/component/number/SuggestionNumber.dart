@@ -29,7 +29,7 @@ class SuggestionNumber extends StatelessWidget{
   List<SizedBox> _getLottoNumber() {
     List<SizedBox> sizeBox = [];
     for(Lotto lotto in list){
-      List<Container> numbers = [];
+      List<Expanded> numbers = [];
       numbers.add(layOutTurn(lotto.turn));
       numbers.add(layOutNumber(lotto.first));
       numbers.add(layOutNumber(lotto.second));
@@ -37,40 +37,69 @@ class SuggestionNumber extends StatelessWidget{
       numbers.add(layOutNumber(lotto.fourth));
       numbers.add(layOutNumber(lotto.fifth));
       numbers.add(layOutNumber(lotto.sixth));
+      numbers.add(layOutGrade(lotto.grade));
       sizeBox.add(SizedBox(child: Row(children: numbers)));
     }
      return sizeBox;
   }
 
-  Container layOutTurn(int number){
-    return Container(
-        width: 60,
-        margin: const EdgeInsets.all(4.0),
-        padding: const EdgeInsets.all(4.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.black12, width: 1),
-        ),
-        child: Text( "${number.toString()}회", style: const TextStyle(fontWeight:FontWeight.w500), textAlign:TextAlign.center)
-    );
+  Expanded layOutTurn(int number){
+    return
+      Expanded(
+        flex: 2,
+        child:
+                  Container(
+                    //width: 60,
+                    margin: const EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(2.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.black12, width: 1),
+                    ),
+                    child: Text( "${number.toString()}회", style: const TextStyle(fontWeight:FontWeight.w500, fontSize: 10), textAlign:TextAlign.center)
+                  )
+      );
+  }
+
+  Expanded layOutGrade(String text){
+    return
+      Expanded(
+          flex: 2,
+          child:
+              Container(
+                //width: 60,
+                  margin: const EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.all(4.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.redAccent, width: 1),
+                  ),
+                  child: Text( text, style: TextStyle(fontWeight:FontWeight.w500, fontSize: 10), textAlign:TextAlign.center)
+              )
+      );
   }
 
   // 번호 하나의 플랫폼
-  Container layOutNumber(int number){
+  Expanded layOutNumber(int number){
     String numberTxt = number.toString();
     if(number < 9) {
       numberTxt = "0$numberTxt";      // 일의 자리는 0을 붙여 준다.
     }
-    return Container(
-        margin: const EdgeInsets.all(4.0),
-        padding: const EdgeInsets.all(4.0),
-        decoration: BoxDecoration(
-          color: _getNumberColor(number),
-          borderRadius: BorderRadius.circular(360),
-          border: Border.all(color: Colors.black12, width: 1),
-        ),
-        child: Text(numberTxt, style: const TextStyle(fontWeight:FontWeight.w400), textAlign:TextAlign.center)
-    );
+    return
+      Expanded(
+        flex: 1,
+        child:
+                Container(
+                margin: const EdgeInsets.all(4.0),
+                padding: const EdgeInsets.all(4.0),
+                decoration: BoxDecoration(
+                  color: _getNumberColor(number),
+                  borderRadius: BorderRadius.circular(360),
+                  // border: Border.all(color:  _getNumberColor(number), width: 1),
+                ),
+                child: Text(numberTxt, style: const TextStyle(fontWeight:FontWeight.w400, fontSize: 10), textAlign:TextAlign.center)
+            )
+      );
   }
 
   @override
@@ -80,7 +109,7 @@ class SuggestionNumber extends StatelessWidget{
                 child:
                         Center(
                             child:Column(
-                               mainAxisSize: MainAxisSize.min,
+                               // mainAxisSize: MainAxisSize.min,
                                 children: _getLottoNumber()
                             )
                         )

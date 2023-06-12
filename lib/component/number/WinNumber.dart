@@ -37,7 +37,6 @@ class WinNumber extends StatelessWidget{
 
   // 번호 하나의 플랫폼
   Container layOutNumber(int number){
-
     var numberTxt = number.toString();
     if(number < 9) {
       numberTxt = "0$numberTxt";      // 일의 자리는 0을 붙여 준다.
@@ -59,5 +58,4 @@ class WinNumber extends StatelessWidget{
   Widget build(BuildContext context) {
     return _getLottoNumber();
   }
-
 }

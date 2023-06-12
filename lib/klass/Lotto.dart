@@ -10,8 +10,9 @@ class Lotto{
   int fourth = 0;
   int fifth = 0;
   int sixth = 0;
+  String grade = "";
 
-  LottoList(){
+  Lotto(){
     print(">>>>>>>>>>>>>>>>>>>>>> default");
   }
 
@@ -23,6 +24,7 @@ class Lotto{
       , this.fourth
       , this.fifth
       , this.sixth
+      , this.grade
       );
 
   factory Lotto.fromJson(Map<String, dynamic> json) {
@@ -34,6 +36,7 @@ class Lotto{
         , json['fourth']
         , json['fifth']
         , json['sixth']
+        , json['grade']
     );
   }
 }
