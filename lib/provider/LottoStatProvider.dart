@@ -71,8 +71,11 @@ class LottoStatProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void suggestionLotto(String form, String to, {String seed="12"}) {
-    _requestSuggestionLotto(seed, form, to);
+  void suggestionLotto(String from, String to, String seed) {
+    print(from);
+    print(to);
+    print(seed);
+    _requestSuggestionLotto(seed, from, to);
   }
 
   void saveLotto() {

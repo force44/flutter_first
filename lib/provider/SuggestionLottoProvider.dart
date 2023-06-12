@@ -26,9 +26,8 @@ class SuggestionLottoProvider with ChangeNotifier {
 
     _list = List<Lotto>.empty(growable:true);
     Map<String, dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
-    List<dynamic> jj = jsonData['data']['lists'];
-    print(jj);
-     for(dynamic lotto in jj){
+    List<dynamic> lottoList = jsonData['data']['lists'];
+     for(dynamic lotto in lottoList){
          _list.add(Lotto.fromJson(lotto));
      }
     notifyListeners();

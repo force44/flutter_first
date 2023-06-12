@@ -15,13 +15,9 @@ class TabLuck extends StatefulWidget {
 }
 
 class _TabLuck extends State<TabLuck> {
-  //const TabLuck({super.key});
-  //const TabLuck({Key? key}) : super(key: key);
-
   String seed = '';
   String from = '';
   String to = '';
-
   @override
   Widget build(BuildContext context) {
 
@@ -101,7 +97,13 @@ class _TabLuck extends State<TabLuck> {
                                             height: 70,
                                             child: OutlinedButton(
                                                   onPressed: () {
-                                                    context.read<LottoStatProvider>().suggestionLotto(from, to, seed: seed);
+                                                    if(from == '') setState(() {from = '1000';});
+
+                                                    if(to == '') setState(() {to = '1070';});
+
+                                                    if(seed == '') setState(() {seed = '12';});
+
+                                                    context.read<LottoStatProvider>().suggestionLotto(from, to, seed);
                                                   },
                                                   style: OutlinedButton.styleFrom(foregroundColor: Colors.redAccent),
                                                   child: Center( child: Text( 'Good\nLuck☆', style: TextStyle(fontWeight:FontWeight.w900) )),
@@ -124,39 +126,35 @@ class _TabLuck extends State<TabLuck> {
                                 color: Colors.grey.withOpacity(0.5),
                                 spreadRadius: 1,
                                 blurRadius: 4,
-                                offset: Offset(0, 3), // changes position of shadow
+                                //offset: Offset(0, 3), // changes position of shadow
                               ),
                             ],
                           ),
-                          child:  Column(
-                              children:
-                              [
-                                Row(
-                                  children: [
-                                      WinNumber(context.watch<LottoStatProvider>().lottoNumber) // 추천 번호
-                                    , SizedBox(
-                                        //width: 80,
-                                        child: Column(
-                                          children: [
-                                            OutlinedButton(
-                                                onPressed: () {
-                                                  context.read<LottoStatProvider>().saveLotto();
-                                                },
-                                                style: OutlinedButton.styleFrom(foregroundColor: Colors.blueAccent),
-                                                child: Center( child: Text( 'Save', style: TextStyle(fontWeight:FontWeight.w900) ))
-
-                                            ),
-
-                                            Text("count : ${context.watch<LottoStatProvider>().count}"
-                                                , style: TextStyle(fontWeight:FontWeight.w400, )
-                                                , textAlign:TextAlign.center),
-                                          ],
-                                        )
-                                    )
-                                  ],
+                          child:
+                          Row(
+                              children : [
+                                Expanded(
+                                  flex: 3,
+                                  child: WinNumber(context.watch<LottoStatProvider>().lottoNumber),
                                 ),
-
-                              ]
+                                Expanded(
+                                  flex: 1,
+                                  child:  Column(
+                                      children: [
+                                        OutlinedButton(
+                                            onPressed: () {
+                                              context.read<LottoStatProvider>().saveLotto();
+                                            },
+                                            style: OutlinedButton.styleFrom(foregroundColor: Colors.blueAccent),
+                                            child: Center( child: Text( 'Save', style: TextStyle(fontWeight:FontWeight.w900) ))
+                                        ),
+                                        Text("count : ${context.watch<LottoStatProvider>().count}"
+                                            , style: TextStyle(fontWeight:FontWeight.w400, )
+                                            , textAlign:TextAlign.center),
+                                      ],
+                                    )
+                                ),
+                               ]
                           )
                       ),
                       Container(
@@ -183,45 +181,79 @@ class _TabLuck extends State<TabLuck> {
                               ),
                               Container(
                                 margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                child: Center( child: CountWinNumber(context.watch<LottoStatProvider>().countByWinNumbers))
+                                child:  CountWinNumber(context.watch<LottoStatProvider>().countByWinNumbers)
                               ),
                               Container(
                                   margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                                   child: Row(
                                     children: [
-                                      Text("홀짝 : " , style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center),
-                                      SizedBox(width: 50,
-                                          child: Text(" ${context.watch<LottoStatProvider>().oddAndEvenRate} "
-                                              , style: TextStyle(color:Colors.orangeAccent))
+                                      Expanded(
+                                        flex: 1,
+                                        child : Row ( children: [
+                                            Text("홀짝 : " , style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center),
+                                            Text(" ${context.watch<LottoStatProvider>().oddAndEvenRate} ", style: TextStyle(color:Colors.orangeAccent))
+                                        ])
                                       ),
-                                      Text("총합 : " , style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center),
-                                      SizedBox(width: 50,
-                                          child: Text(" ${context.watch<LottoStatProvider>().numberSum.toString()}"
-                                              , style: TextStyle(color:Colors.orangeAccent))
+
+                                      Expanded(
+                                          flex: 1,
+                                          child : Row ( children: [
+                                            Text("총합 : " , style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center),
+                                            Text(" ${context.watch<LottoStatProvider>().numberSum.toString()}", style: TextStyle(color:Colors.orangeAccent))
+                                          ])
                                       ),
-                                      Text("이월수 : " , style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center),
-                                      Text(" ${context.watch<LottoStatProvider>().transferNumber}개"
-                                            , style: TextStyle(color:Colors.orangeAccent)),
+
+                                      Expanded(
+                                          flex: 1,
+                                          child : Row ( children: [
+                                            Text("이월수 : " , style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center),
+                                            Text(" ${context.watch<LottoStatProvider>().transferNumber}개" , style: TextStyle(color:Colors.orangeAccent)),
+                                          ])
+                                      ),
                                     ],
                                   )
                               ),
 
-                              Text("역대 당첨 순위 ↓↓" , style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center),
-
                               Container(
                                   margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                  child: Text("역대 당첨 순위 ↓↓" , style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center),
+                              ),
+                              // Container(
+                              //   margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                              //   child: Text("1(${context.watch<LottoStatProvider>().historyGrade[0]}) "
+                              //       "2(${context.watch<LottoStatProvider>().historyGrade[1]}) "
+                              //       "3(${context.watch<LottoStatProvider>().historyGrade[1]}) "
+                              //       "4(${context.watch<LottoStatProvider>().historyGrade[1]}) "
+                              //       "5(${context.watch<LottoStatProvider>().historyGrade[1]}) " , style: TextStyle(fontWeight:FontWeight.w400, color:Colors.deepPurpleAccent), textAlign:TextAlign.center),
+                              // ),
+                              SizedBox(
                                   child: Center(
                                     child: Row(
-                                      children: [
-                                        Text("1(${context.watch<LottoStatProvider>().historyGrade[0]}) ", style: TextStyle(color:Colors.deepPurpleAccent), textAlign:TextAlign.center),
-                                        Text("2(${context.watch<LottoStatProvider>().historyGrade[1]}) ", style: TextStyle(color:Colors.orangeAccent), textAlign:TextAlign.center),
-                                        Text("3(${context.watch<LottoStatProvider>().historyGrade[2]}) ", style: TextStyle(color:Colors.greenAccent), textAlign:TextAlign.center),
-                                        Text("4(${context.watch<LottoStatProvider>().historyGrade[3]}) ", style: TextStyle(color:Colors.blueAccent), textAlign:TextAlign.center),
-                                        Text("5(${context.watch<LottoStatProvider>().historyGrade[4]}) ", style: TextStyle(color:Colors.redAccent), textAlign:TextAlign.center)
-                                      ]
+                                        children: [
+                                          Expanded(
+                                              flex: 1,
+                                              child : Text("1(${context.watch<LottoStatProvider>().historyGrade[0]}) ", style: TextStyle(color:Colors.deepPurpleAccent), textAlign:TextAlign.center)
+                                          ),
+                                          Expanded(
+                                              flex: 1,
+                                              child : Text("2(${context.watch<LottoStatProvider>().historyGrade[1]}) ", style: TextStyle(color:Colors.orangeAccent))
+                                          ),
+                                          Expanded(
+                                              flex: 1,
+                                              child : Text("3(${context.watch<LottoStatProvider>().historyGrade[2]}) ", style: TextStyle(color:Colors.greenAccent))
+                                          ),
+                                          Expanded(
+                                              flex: 1,
+                                              child : Text("4(${context.watch<LottoStatProvider>().historyGrade[3]}) ", style: TextStyle(color:Colors.blueAccent))
+                                          ),
+                                          Expanded(
+                                              flex: 1,
+                                              child : Text("5(${context.watch<LottoStatProvider>().historyGrade[4]}) ", style: TextStyle(color:Colors.redAccent))
+                                          ),
+                                        ]
                                     ),
                                   )
-                              ),
+                                )
                             ]
                           )
                       )

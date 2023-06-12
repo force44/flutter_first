@@ -13,10 +13,8 @@ class CountWinNumber extends StatelessWidget{
   SizedBox _getLottoNumber() {
     List<Expanded> numbers = [];
     for(var i = 0; i < countWinNumber.length; i ++){
-      var number = countWinNumber[i];
-      numbers.add(layOutNumber(number));
+      numbers.add(layOutNumber(countWinNumber[i]));
     }
-
     return SizedBox(
         child:  Row(children: numbers)
     );

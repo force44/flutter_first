@@ -23,18 +23,17 @@ class _TabProfile extends State<TabProfile>{
 
   @override
   Widget build(BuildContext context) {
+
+    //context.read<SuggestionLottoProvider>().searchList(_type);
+
     return Center(
       child: ChangeNotifierProvider(
         create: (BuildContext context) => SuggestionLottoProvider(),
-        child:
-
-        SingleChildScrollView(
-        child:
-
-        Column(
+        child: SingleChildScrollView(
+          child: Column(
               children: [
                 Container(
-                  margin: const EdgeInsets.all(10.0),
+                  margin: const EdgeInsets.all(5.0),
                   padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -89,7 +88,7 @@ class _TabProfile extends State<TabProfile>{
                       Expanded(
                           flex: 1,
                           child: SizedBox(
-                              height: 70,
+                              height: 40,
                               child: Center(
                                   child: OutlinedButton(
                                       onPressed: () {

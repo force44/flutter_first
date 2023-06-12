@@ -90,33 +90,33 @@ class TabHome extends StatelessWidget{
                           children: [
                             Container(
                                 margin: const EdgeInsets.all(1.0),
-                                child: Text("일상루틴")),
+                                child: Text("추천로또")),
                             Container(
                                 margin: const EdgeInsets.all(1.0),
-                                child: Text("4개", style: TextStyle(fontWeight:FontWeight.w700))),
+                                child: Text("1002개", style: TextStyle(fontWeight:FontWeight.w700))),
                             Container(
                                 width : 40,
                                 margin: const EdgeInsets.all(1.0),
                                 color: Colors.yellow.shade100,
-                                child: Center( child: Text("4개", style: TextStyle(color: Colors.orange))))
+                                child: Center( child: Text("10개", style: TextStyle(color: Colors.orange))))
                           ]
                       )
-                  )                  ,
+                  ),
                   Expanded(
                       flex: 1,
                       child: Column(
                           children: [
                             Container(
                                 margin: const EdgeInsets.all(1.0),
-                                child: Text("당첨기록")),
+                                child: Text("저장로또")),
                             Container(
                                 margin: const EdgeInsets.all(1.0),
-                                child: Text("724보", style: TextStyle(fontWeight:FontWeight.w700))),
+                                child: Text("520개", style: TextStyle(fontWeight:FontWeight.w700))),
                             Container(
                                 width : 60,
                                 margin: const EdgeInsets.all(1.0),
                                 color: Colors.yellow.shade100,
-                                child: Center( child: Text("3000보", style: TextStyle(color: Colors.orange))))
+                                child: Center( child: Text("9개", style: TextStyle(color: Colors.orange))))
                           ]
                       )
                   )
@@ -127,10 +127,10 @@ class TabHome extends StatelessWidget{
                           children: [
                             Container(
                                 margin: const EdgeInsets.all(1.0),
-                                child: Text("생성기록")),
+                                child: Text("걸음수")),
                             Container(
                                 margin: const EdgeInsets.all(1.0),
-                                child: Text("0개", style: TextStyle(fontWeight:FontWeight.w700))),
+                                child: Text("3000보", style: TextStyle(fontWeight:FontWeight.w700))),
                             Container(
                                 width : 40,
                                 margin: const EdgeInsets.all(1.0),

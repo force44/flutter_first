@@ -25,7 +25,7 @@ class WinNumber extends StatelessWidget{
 
   // 추천 번호들 나래비!
   SizedBox _getLottoNumber() {
-    List<Container> numbers = [];
+    List<Expanded> numbers = [];
     for(var i = 0; i < lottoNumber.length; i ++){
       numbers.add(layOutNumber(lottoNumber[i]));
     }
@@ -36,22 +36,25 @@ class WinNumber extends StatelessWidget{
   }
 
   // 번호 하나의 플랫폼
-  Container layOutNumber(int number){
+  Expanded layOutNumber(int number){
     var numberTxt = number.toString();
     if(number < 9) {
       numberTxt = "0$numberTxt";      // 일의 자리는 0을 붙여 준다.
     }
-
-    return Container(
-        margin: const EdgeInsets.all(4.0),
-        padding: const EdgeInsets.all(4.0),
-        decoration: BoxDecoration(
-          color: _getNumberColor(number),
-          borderRadius: BorderRadius.circular(360),
-          border: Border.all(color: Colors.black12, width: 1),
-        ),
-        child: Text(numberTxt, style: TextStyle(fontWeight:FontWeight.w500), textAlign:TextAlign.center)
-    );
+    return
+      Expanded(
+        flex: 1,
+        child: Container(
+                          margin: const EdgeInsets.all(4.0),
+                          padding: const EdgeInsets.all(4.0),
+                          decoration: BoxDecoration(
+                            color: _getNumberColor(number),
+                            borderRadius: BorderRadius.circular(360),
+                            border: Border.all(color: Colors.black12, width: 1),
+                          ),
+                          child: Text(numberTxt, style: TextStyle(fontWeight:FontWeight.w500), textAlign:TextAlign.center)
+                      )
+      );
   }
 
   @override

@@ -50,13 +50,13 @@ class SuggestionNumber extends StatelessWidget{
         child:
                   Container(
                     //width: 60,
-                    margin: const EdgeInsets.all(4.0),
-                    padding: const EdgeInsets.all(2.0),
+                    margin: const EdgeInsets.all(1.0),
+                    padding: const EdgeInsets.all(4.0),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(360),
                       border: Border.all(color: Colors.black12, width: 1),
                     ),
-                    child: Text( "${number.toString()}회", style: const TextStyle(fontWeight:FontWeight.w500, fontSize: 10), textAlign:TextAlign.center)
+                    child: Text( "${number.toString()}회", style: const TextStyle(fontWeight:FontWeight.w500, fontSize: 12), textAlign:TextAlign.center)
                   )
       );
   }
@@ -64,17 +64,17 @@ class SuggestionNumber extends StatelessWidget{
   Expanded layOutGrade(String text){
     return
       Expanded(
-          flex: 2,
+          flex: 1,
           child:
               Container(
                 //width: 60,
-                  margin: const EdgeInsets.all(4.0),
-                  padding: const EdgeInsets.all(4.0),
+                  margin: const EdgeInsets.all(1.0),
+                  padding: const EdgeInsets.all(5.0),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(360),
                     border: Border.all(color: Colors.redAccent, width: 1),
                   ),
-                  child: Text( text, style: TextStyle(fontWeight:FontWeight.w500, fontSize: 10), textAlign:TextAlign.center)
+                  child: Text( text, style: TextStyle(fontWeight:FontWeight.w800, fontSize: 12), textAlign:TextAlign.center)
               )
       );
   }
@@ -90,14 +90,14 @@ class SuggestionNumber extends StatelessWidget{
         flex: 1,
         child:
                 Container(
-                margin: const EdgeInsets.all(4.0),
-                padding: const EdgeInsets.all(4.0),
+                margin: const EdgeInsets.all(3.0),
+                padding: const EdgeInsets.all(5.0),
                 decoration: BoxDecoration(
                   color: _getNumberColor(number),
                   borderRadius: BorderRadius.circular(360),
                   // border: Border.all(color:  _getNumberColor(number), width: 1),
                 ),
-                child: Text(numberTxt, style: const TextStyle(fontWeight:FontWeight.w400, fontSize: 10), textAlign:TextAlign.center)
+                child: Text(numberTxt, style: const TextStyle(fontWeight:FontWeight.w400, fontSize: 12), textAlign:TextAlign.center)
             )
       );
   }
