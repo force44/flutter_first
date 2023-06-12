@@ -218,17 +218,11 @@ class _TabLuck extends State<TabLuck> {
                                         Text("3(${context.watch<LottoStatProvider>().historyGrade[2]}) ", style: TextStyle(color:Colors.greenAccent), textAlign:TextAlign.center),
                                         Text("4(${context.watch<LottoStatProvider>().historyGrade[3]}) ", style: TextStyle(color:Colors.blueAccent), textAlign:TextAlign.center),
                                         Text("5(${context.watch<LottoStatProvider>().historyGrade[4]}) ", style: TextStyle(color:Colors.redAccent), textAlign:TextAlign.center)
-                                      ],
+                                      ]
                                     ),
                                   )
                               ),
-
-
-
-
-
-                            ],
-
+                            ]
                           )
                       )
                     ])
