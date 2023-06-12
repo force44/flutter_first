@@ -8,7 +8,7 @@ class LottoStatProvider with ChangeNotifier {
   int _count = 0;
   int _numberSum = 0;
   int _turn = 0;
-  String _oddAndEvenRate = "";
+  String _oddAndEvenRate = " 0 : 0";
   String _transferNumber = "0";
   List _lottoNumber =List<int>.filled(6, 0);
   List _countByWinNumbers =List<int>.filled(6, 0);
@@ -22,9 +22,10 @@ class LottoStatProvider with ChangeNotifier {
   List get countByWinNumbers => _countByWinNumbers;
   List get historyGrade => _historyGrade;
 
+  // //4.230.35.161:8080/
   void _requestSuggestionLotto(String seed, String form, String to) async {
     var url = Uri.parse(
-      'http://localhost:81/lotto-suggestion',
+       "${Constant.url}/lotto-suggestion",
     );
 
     var paramData = json.encode( {"from" : form, "to" : to, "seed" : seed});
@@ -71,7 +72,7 @@ class LottoStatProvider with ChangeNotifier {
   }
 
   void suggestionLotto(String form, String to, {String seed="12"}) {
-    _requestSuggestionLotto("12", "1000", "1070");
+    _requestSuggestionLotto(seed, form, to);
   }
 
   void saveLotto() {

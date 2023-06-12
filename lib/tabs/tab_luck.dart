@@ -49,13 +49,8 @@ class _TabLuck extends State<TabLuck> {
                         ),
                         child: Row(
                           children: [
-                            SizedBox(
-                                width: 210,
-                                child: Row(
-                                    children: [
-                                      Container(
-                                        width: 50,
-                                        margin: const EdgeInsets.all(5.0),
+                                      Expanded(
+                                        flex: 1,
                                         child: TextField(
                                           //    controller: seed,
                                             onChanged: (text) {
@@ -64,30 +59,16 @@ class _TabLuck extends State<TabLuck> {
                                               });
                                             }
                                             , maxLength : 2
+                                            , keyboardType: TextInputType.number
                                             //,inputFormatters:[LengthLimitingTextInputFormatter(4)]
                                             ,decoration: InputDecoration(
-                                          labelText: 'seed',
-                                          //hintText: 'random number gen size',
-                                          // labelStyle: TextStyle(color: Colors.redAccent),
-                                          // focusedBorder: OutlineInputBorder(
-                                          //   borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                          //   borderSide:
-                                          //   BorderSide(width: 1, color: Colors.redAccent),
-                                          // ),
-                                          // enabledBorder: OutlineInputBorder(
-                                          //   borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                          //   borderSide:
-                                          //   BorderSide(width: 1, color: Colors.redAccent),
-                                          // ),
-                                          // border: OutlineInputBorder(
-                                          //   borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                          // ),
-                                        )),
+                                              labelText: 'seed',
+                                             )
+                                        ),
                                       ),
 
-                                      Container(
-                                          width: 50,
-                                          margin: const EdgeInsets.fromLTRB(0, 0, 10.0, 0),
+                                      Expanded(
+                                          flex: 1,
                                           child: TextField(
                                               onChanged: (text) {
                                                 setState(() {
@@ -96,13 +77,12 @@ class _TabLuck extends State<TabLuck> {
                                               }
                                               , keyboardType: TextInputType.number
                                               , maxLength : 4
-                                              //, inputFormatters:[LengthLimitingTextInputFormatter(4)]
                                               , decoration: InputDecoration( labelText: 'from')
                                           )
                                       ),
 
-                                      SizedBox(
-                                          width: 50,
+                                      Expanded(
+                                          flex: 1,
                                           child: TextField(
                                               onChanged: (text) {
                                                 setState(() {
@@ -113,30 +93,25 @@ class _TabLuck extends State<TabLuck> {
                                               , maxLength : 4
                                               , decoration: InputDecoration( labelText: 'to')
                                           )
+                                      ),
+                                      Expanded(
+                                          flex: 2,
+                                          child: Container(
+                                            margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                            height: 70,
+                                            child: OutlinedButton(
+                                                  onPressed: () {
+                                                    context.read<LottoStatProvider>().suggestionLotto(from, to, seed: seed);
+                                                  },
+                                                  style: OutlinedButton.styleFrom(foregroundColor: Colors.redAccent),
+                                                  child: Center( child: Text( 'Good\nLuck☆', style: TextStyle(fontWeight:FontWeight.w900) )),
+                                                  )
+                                          )
                                       )
-
                                     ]
                                 )
-                            ),
-                            SizedBox(
-                                width: 70,
-                                height: 70,
-                                child: SizedBox(
-                                    child: Center(
-                                        child: OutlinedButton(
-                                            onPressed: () {
-                                              context.read<LottoStatProvider>().suggestionLotto(from, to, seed: seed);
-                                            },
-                                            style: OutlinedButton.styleFrom(foregroundColor: Colors.redAccent),
-                                            child: Center( child: Text( 'Good\nLuck!', style: TextStyle(fontWeight:FontWeight.w900) ))
-
-                                        )
-                                    )
-                                )
-                            )
-                          ],
-                        ),
                       ),
+
                       Container(
                           margin: const EdgeInsets.all(10.0),
                           padding: const EdgeInsets.all(10.0),
@@ -158,21 +133,18 @@ class _TabLuck extends State<TabLuck> {
                               [
                                 Row(
                                   children: [
-                                    WinNumber(context.watch<LottoStatProvider>().lottoNumber) // 추천 번호
+                                      WinNumber(context.watch<LottoStatProvider>().lottoNumber) // 추천 번호
                                     , SizedBox(
-                                        width: 80,
+                                        //width: 80,
                                         child: Column(
                                           children: [
-                                            Container(
-                                              //margin: const EdgeInsets.fromLTRB(0, 0, 10, 5),
-                                                child: OutlinedButton(
-                                                    onPressed: () {
-                                                      context.read<LottoStatProvider>().saveLotto();
-                                                    },
-                                                    style: OutlinedButton.styleFrom(foregroundColor: Colors.blueAccent),
-                                                    child: Center( child: Text( 'Save', style: TextStyle(fontWeight:FontWeight.w900) ))
+                                            OutlinedButton(
+                                                onPressed: () {
+                                                  context.read<LottoStatProvider>().saveLotto();
+                                                },
+                                                style: OutlinedButton.styleFrom(foregroundColor: Colors.blueAccent),
+                                                child: Center( child: Text( 'Save', style: TextStyle(fontWeight:FontWeight.w900) ))
 
-                                                )
                                             ),
 
                                             Text("count : ${context.watch<LottoStatProvider>().count}"
@@ -205,43 +177,56 @@ class _TabLuck extends State<TabLuck> {
                           ),
                           child:  Column(
                             children:  [
-                              Row(
-                                children: [
-                                  Text("from~to 출현횟수 : ", style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
-                                  CountWinNumber(context.watch<LottoStatProvider>().countByWinNumbers)
-                                ],
+                              SizedBox(
+                                child:
+                                  Text("from ~ to 출현 횟수 ↓↓", style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
                               ),
-
+                              Container(
+                                margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                child: Center( child: CountWinNumber(context.watch<LottoStatProvider>().countByWinNumbers))
+                              ),
                               Container(
                                   margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                                   child: Row(
                                     children: [
                                       Text("홀짝 : " , style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center),
-                                      SizedBox(width: 60,
+                                      SizedBox(width: 50,
                                           child: Text(" ${context.watch<LottoStatProvider>().oddAndEvenRate} "
-                                              , style: TextStyle(color:Colors.blueAccent))
+                                              , style: TextStyle(color:Colors.orangeAccent))
                                       ),
                                       Text("총합 : " , style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center),
-                                      SizedBox(width: 60,
+                                      SizedBox(width: 50,
                                           child: Text(" ${context.watch<LottoStatProvider>().numberSum.toString()}"
-                                              , style: TextStyle(color:Colors.blueAccent))
+                                              , style: TextStyle(color:Colors.orangeAccent))
                                       ),
                                       Text("이월수 : " , style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center),
-                                      Text(" ${context.watch<LottoStatProvider>().transferNumber}개" , style: TextStyle(color:Colors.blueAccent)),
+                                      Text(" ${context.watch<LottoStatProvider>().transferNumber}개"
+                                            , style: TextStyle(color:Colors.orangeAccent)),
                                     ],
-                                  )),
-
-                              Row(
-                                children: [
-                                  Text("역대 당첨 순위 : " , style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center),
-                                  Text("1(${context.watch<LottoStatProvider>().historyGrade[0]}) "
-                                      "2(${context.watch<LottoStatProvider>().historyGrade[1]}) "
-                                      "3(${context.watch<LottoStatProvider>().historyGrade[2]}) "
-                                      "4(${context.watch<LottoStatProvider>().historyGrade[3]}) "
-                                      "5(${context.watch<LottoStatProvider>().historyGrade[4]}) "
                                   )
-                                ],
-                              )
+                              ),
+
+                              Text("역대 당첨 순위 ↓↓" , style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center),
+
+                              Container(
+                                  margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                  child: Center(
+                                    child: Row(
+                                      children: [
+                                        Text("1(${context.watch<LottoStatProvider>().historyGrade[0]}) ", style: TextStyle(color:Colors.deepPurpleAccent), textAlign:TextAlign.center),
+                                        Text("2(${context.watch<LottoStatProvider>().historyGrade[1]}) ", style: TextStyle(color:Colors.orangeAccent), textAlign:TextAlign.center),
+                                        Text("3(${context.watch<LottoStatProvider>().historyGrade[2]}) ", style: TextStyle(color:Colors.greenAccent), textAlign:TextAlign.center),
+                                        Text("4(${context.watch<LottoStatProvider>().historyGrade[3]}) ", style: TextStyle(color:Colors.blueAccent), textAlign:TextAlign.center),
+                                        Text("5(${context.watch<LottoStatProvider>().historyGrade[4]}) ", style: TextStyle(color:Colors.redAccent), textAlign:TextAlign.center)
+                                      ],
+                                    ),
+                                  )
+                              ),
+
+
+
+
+
                             ],
 
                           )
