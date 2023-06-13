@@ -28,6 +28,12 @@ class SuggestionNumber extends StatelessWidget{
   // 추천 번호들 나래비!
   List<SizedBox> _getLottoNumber() {
     List<SizedBox> sizeBox = [];
+
+    if(list.isEmpty){
+      sizeBox.add(emptyText());
+      return sizeBox;
+    }
+
     for(Lotto lotto in list){
       List<Expanded> numbers = [];
       numbers.add(layOutTurn(lotto.turn));
@@ -43,6 +49,22 @@ class SuggestionNumber extends StatelessWidget{
      return sizeBox;
   }
 
+
+  SizedBox emptyText(){
+    return
+          SizedBox(
+            //width: 60,
+            //   margin: const EdgeInsets.all(1.0),
+            //   padding: const EdgeInsets.all(4.0),
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(360),
+            //     border: Border.all(color: Colors.black12, width: 1),
+            //   ),
+              child: Text( "리스트가 없어요", style: const TextStyle(fontWeight:FontWeight.w500, color: Colors.grey), textAlign:TextAlign.center)
+          );
+
+  }
+
   Expanded layOutTurn(int number){
     return
       Expanded(
@@ -51,10 +73,10 @@ class SuggestionNumber extends StatelessWidget{
                   Container(
                     //width: 60,
                     margin: const EdgeInsets.all(1.0),
-                    padding: const EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(3.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(360),
-                      border: Border.all(color: Colors.black12, width: 1),
+                      border: Border.all(color: Colors.grey, width: 1),
                     ),
                     child: Text( "${number.toString()}회", style: const TextStyle(fontWeight:FontWeight.w500, fontSize: 12), textAlign:TextAlign.center)
                   )
@@ -68,8 +90,8 @@ class SuggestionNumber extends StatelessWidget{
           child:
               Container(
                 //width: 60,
-                  margin: const EdgeInsets.all(1.0),
-                  padding: const EdgeInsets.all(5.0),
+                  margin: const EdgeInsets.all(2.0),
+                  padding: const EdgeInsets.all(4.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(360),
                     border: Border.all(color: Colors.redAccent, width: 1),
@@ -82,7 +104,7 @@ class SuggestionNumber extends StatelessWidget{
   // 번호 하나의 플랫폼
   Expanded layOutNumber(int number){
     String numberTxt = number.toString();
-    if(number < 9) {
+    if(number < 10) {
       numberTxt = "0$numberTxt";      // 일의 자리는 0을 붙여 준다.
     }
     return
@@ -90,7 +112,7 @@ class SuggestionNumber extends StatelessWidget{
         flex: 1,
         child:
                 Container(
-                margin: const EdgeInsets.all(3.0),
+                margin: const EdgeInsets.all(4.0),
                 padding: const EdgeInsets.all(5.0),
                 decoration: BoxDecoration(
                   color: _getNumberColor(number),
@@ -101,7 +123,6 @@ class SuggestionNumber extends StatelessWidget{
             )
       );
   }
-
   @override
   Widget build(BuildContext context) {
     return

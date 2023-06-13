@@ -4,69 +4,9 @@ class TabHome extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child:  Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.all(10.0),
-              padding: const EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.black12, width: 1),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 1,
-                    blurRadius: 4,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Row(
-                children: const [
-                  SizedBox(
-                      width: 280,
-                      child: Column(
-                        children: [
-                          Text("나의 목표", style: TextStyle(fontSize: 15.0, fontWeight:FontWeight.w700)),
-                          Text("오늘도 푹자고", style: TextStyle(fontSize: 12.0), textAlign:TextAlign.left),
-                          Text("상쾌한 하루 보내세요.", style: TextStyle(fontSize: 12.0), textAlign:TextAlign.left)
-                      ]
-                      )
-                  ),
-                  // SizedBox(
-                  //     child: Row(
-                  //       children: [
-                  //         Container(
-                  //           width: 50,
-                  //           height: 60,
-                  //            margin: const EdgeInsets.all(1.0),
-                  //           // padding: const EdgeInsets.all(10.0),
-                  //           decoration: BoxDecoration(
-                  //             borderRadius: BorderRadius.circular(10),
-                  //             border: Border.all(color: Colors.black12, width: 1),
-                  //           ),
-                  //           child: Center( child: Text("07h", style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center))
-                  //         ),
-                  //         Container(
-                  //             width: 50,
-                  //             height: 60,
-                  //              margin: const EdgeInsets.all(1.0),
-                  //             // padding: const EdgeInsets.all(10.0),
-                  //             decoration: BoxDecoration(
-                  //               borderRadius: BorderRadius.circular(10),
-                  //               border: Border.all(color: Colors.black12, width: 1),
-                  //             ),
-                  //             child: Center( child: Text("30m", style: TextStyle(fontWeight:FontWeight.w700), textAlign:TextAlign.center))
-                  //         ),
-                  //       ],
-                  //     )
-                  // )
-                ],
-              ),
-            ),
-            Container(
+    return  Column(
+              children: [
+                      Container(
               margin: const EdgeInsets.all(10.0),
               padding: const EdgeInsets.all(10.0),
               decoration: BoxDecoration(
@@ -90,15 +30,15 @@ class TabHome extends StatelessWidget{
                           children: [
                             Container(
                                 margin: const EdgeInsets.all(1.0),
-                                child: Text("추천로또")),
+                                child: Text("★Luck★")),
                             Container(
                                 margin: const EdgeInsets.all(1.0),
-                                child: Text("1002개", style: TextStyle(fontWeight:FontWeight.w700))),
+                                child: Text("1002", style: TextStyle(fontWeight:FontWeight.w700))),
                             Container(
                                 width : 40,
                                 margin: const EdgeInsets.all(1.0),
                                 color: Colors.yellow.shade100,
-                                child: Center( child: Text("10개", style: TextStyle(color: Colors.orange))))
+                                child: Center( child: Text("10", style: TextStyle(color: Colors.orange))))
                           ]
                       )
                   ),
@@ -108,15 +48,15 @@ class TabHome extends StatelessWidget{
                           children: [
                             Container(
                                 margin: const EdgeInsets.all(1.0),
-                                child: Text("저장로또")),
+                                child: Text("Save")),
                             Container(
                                 margin: const EdgeInsets.all(1.0),
-                                child: Text("520개", style: TextStyle(fontWeight:FontWeight.w700))),
+                                child: Text("520", style: TextStyle(fontWeight:FontWeight.w700))),
                             Container(
                                 width : 60,
                                 margin: const EdgeInsets.all(1.0),
                                 color: Colors.yellow.shade100,
-                                child: Center( child: Text("9개", style: TextStyle(color: Colors.orange))))
+                                child: Center( child: Text("9", style: TextStyle(color: Colors.orange))))
                           ]
                       )
                   )
@@ -127,23 +67,49 @@ class TabHome extends StatelessWidget{
                           children: [
                             Container(
                                 margin: const EdgeInsets.all(1.0),
-                                child: Text("걸음수")),
+                                child: Text("1072회")),
                             Container(
                                 margin: const EdgeInsets.all(1.0),
-                                child: Text("3000보", style: TextStyle(fontWeight:FontWeight.w700))),
+                                child: Text("40", style: TextStyle(fontWeight:FontWeight.w700))),
                             Container(
                                 width : 40,
                                 margin: const EdgeInsets.all(1.0),
                                 color: Colors.yellow,
-                                child: Center( child: Text("1개", style: TextStyle(color: Colors.orange))))
+                                child: Center( child: Text("??", style: TextStyle(color: Colors.orange))))
                           ]
                       )
                   )
                 ],
               ),
             ),
-          ]
-      ),
-    );
+                      Container(
+                          margin: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Colors.black12, width: 1),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 4,
+                                offset: Offset(0, 3), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children:  [
+
+                                  Text( "1071회 당첨번호"),
+                                  Text( "2023.06.10"),
+                                  Text( "1,2,3,4,5,6"),
+                                  Text( "1등 5명 각 52억")
+
+                              ],
+                          ),
+                        ),
+              ]
+      );
   }
 }

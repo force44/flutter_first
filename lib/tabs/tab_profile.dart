@@ -13,11 +13,11 @@ class TabProfile extends StatefulWidget {
 
 
 class _TabProfile extends State<TabProfile>{
-  String turn = '';
+  String turn = '1070';
   final Map<String, String> _valueList = {
-                                              'a': 'all',
-                                              'b' : 'buy',
-                                              's' : 'skip'
+                                              'a' : 'All',
+                                              'b' : 'Luck',
+                                              's' : 'Save'
   };
   String _type = 'a';
 
@@ -26,99 +26,103 @@ class _TabProfile extends State<TabProfile>{
 
     //context.read<SuggestionLottoProvider>().searchList(_type);
 
-    return Center(
-      child: ChangeNotifierProvider(
-        create: (BuildContext context) => SuggestionLottoProvider(),
-        child: SingleChildScrollView(
-          child: Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(5.0),
-                  padding: const EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.blueAccent, width: 1),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                          flex :1,
-                          child: Row(
+    return SizedBox(
+                child: ChangeNotifierProvider(
+                        create: (BuildContext context) => SuggestionLottoProvider(),
+                        child: SingleChildScrollView(
+                          child: Column(
                               children: [
-                                // Container(
-                                //   width: 60,
-                                //   margin: const EdgeInsets.all(5.0),
-                                //   child:
-                                //       TextField(
-                                //           onChanged: (text) {
-                                //             setState(() {
-                                //               turn = text;
-                                //             });
-                                //           }
-                                //           //, maxLength : 4
-                                //           ,inputFormatters:[LengthLimitingTextInputFormatter(4)]
-                                //           ,decoration: const InputDecoration(labelText: '회차')
-                                //       )
-                                //   )
-                                // ,
-
                                 Container(
-                                    //width: 120,
-                                    margin: const EdgeInsets.all(5.0),
-                                    child:
-                                      DropdownButton(
-                                                value: _type,
-                                                items: _valueList.keys.map((key) {
-                                                  return DropdownMenuItem(
-                                                    value: key,
-                                                    child: Text(_valueList[key]!),
-                                                  );
-                                                }).toList(),
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    _type = value!;
-                                                  });
-                                                },
-                                              ),
-                                )
-                              ]
-                          )
-                      ),
-                      Expanded(
-                          flex: 1,
-                          child: SizedBox(
-                              height: 40,
-                              child: Center(
-                                  child: OutlinedButton(
-                                      onPressed: () {
-                                        context.read<SuggestionLottoProvider>().searchList(_type);
-                                      },
-                                      style: OutlinedButton.styleFrom(foregroundColor: Colors.blueAccent),
-                                      child: Center( child: Text( 'search', style: TextStyle(fontWeight:FontWeight.w400) ))
+                                  margin: const EdgeInsets.all(5.0),
+                                  padding: const EdgeInsets.all(5.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(color: Colors.blueAccent, width: 1),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          flex :2,
+                                          child: Row(
+                                              children: [
+                                                Container(
+                                                  width: 60,
+                                                  margin: const EdgeInsets.all(5.0),
+                                                  child: TextField(
+                                                          onChanged: (text) {
+                                                            setState(() {
+                                                              turn = text;
+                                                            });
+                                                          }
+                                                          //, maxLength : 4
+                                                          //,inputFormatters:[LengthLimitingTextInputFormatter(4)]
+                                                          ,decoration: InputDecoration(
+                                                                            border: OutlineInputBorder(),
+                                                                            labelText: '회'
+                                                                        )
+                                                        )
+                                                  )
+                                                ,
 
-                                  )
-                              )
-                          )
+                                                Container(
+                                                    width: 60,
+                                                    margin: const EdgeInsets.all(5.0),
+                                                    child: DropdownButton(
+                                                                value: _type,
+                                                                items: _valueList.keys.map((key) {
+                                                                  return DropdownMenuItem(
+                                                                    value: key,
+                                                                    child: Text(_valueList[key]!),
+                                                                  );
+                                                                }).toList(),
+                                                                onChanged: (value) {
+                                                                  setState(() {
+                                                                    _type = value!;
+                                                                  });
+                                                                },
+                                                              ),
+                                                )
+                                              ]
+                                          )
+                                      ),
+                                      Expanded(
+                                          flex: 1,
+                                          child: SizedBox(
+                                                      height: 40,
+                                                      child:  OutlinedButton(
+                                                              onPressed: () {
+                                                                context.read<SuggestionLottoProvider>().searchList(_type);
+                                                              },
+                                                              style: OutlinedButton.styleFrom(foregroundColor: Colors.blueAccent),
+                                                              child: Center(
+                                                                  child: Text('search', style: TextStyle(fontWeight:FontWeight.w800, color: Colors.blueAccent))
+                                                              )
+                                                          )
+
+                                          )
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                    margin: const EdgeInsets.all(5.0),
+                                    padding: const EdgeInsets.all(5.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(color: Colors.blueAccent, width: 1),
+                                    ),
+                                    child:  Column(
+                                              children:[
+                                                SuggestionNumber(context.watch<SuggestionLottoProvider>().suggestionLotto)
+                                              ]
+                                    )
+                                ),
+                              ]
+                          ),
+                        )
                       )
-                    ],
-                  ),
-                ),
-                Container(
-                    margin: const EdgeInsets.all(10.0),
-                    padding: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.blueAccent, width: 1),
-                    ),
-                    child:  Column(
-                              children:[SuggestionNumber(context.watch<SuggestionLottoProvider>().suggestionLotto)]
-                    )
-                ),
-              ]
-          ),
-        )
-      ));
+    );
   }
 }
