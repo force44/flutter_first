@@ -1,6 +1,3 @@
-
-
-
 class Lotto{
   int id = 0;
   int turn = 0;

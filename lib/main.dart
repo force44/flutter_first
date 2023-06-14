@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_first/page/login/login_page.dart';
+import 'package:flutter_first/provider/LoginProvider.dart';
 import 'package:flutter_first/provider/LottoStatProvider.dart';
 import 'package:flutter_first/provider/SuggestionLottoProvider.dart';
 import 'screen_index.dart';
@@ -10,6 +12,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => LottoStatProvider()),
         ChangeNotifierProvider(create: (_) => SuggestionLottoProvider()),
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
       ],
       child: MyApp(),
     ),
@@ -25,9 +28,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Lotto',
       routes: {
-        '/index': (context) => const IndexScreen(),
+        '/index': (context) => IndexScreen(),
+        '/login': (context) => LoginPage(),
       },
-      initialRoute: '/index',
+      initialRoute: '/login'
     );
   }
 }

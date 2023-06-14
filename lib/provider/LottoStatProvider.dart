@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import '../component/utils/Constant.dart';
-import '../klass/LottoStat.dart';
+import '../model/LottoStat.dart';
 import 'package:http/http.dart' as http;
 
 class LottoStatProvider with ChangeNotifier {
@@ -72,9 +72,6 @@ class LottoStatProvider with ChangeNotifier {
   }
 
   void suggestionLotto(String from, String to, String seed) {
-    print(from);
-    print(to);
-    print(seed);
     _requestSuggestionLotto(seed, from, to);
   }
 

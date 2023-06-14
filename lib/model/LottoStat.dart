@@ -1,6 +1,3 @@
-
-
-
 class LottoStat{
   int turn = 0;
   String oddAndEvenRate = "";

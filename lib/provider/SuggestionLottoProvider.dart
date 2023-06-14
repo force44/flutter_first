@@ -3,7 +3,7 @@ import 'dart:convert';
 import '../component/utils/Constant.dart';
 import 'package:http/http.dart' as http;
 
-import '../klass/Lotto.dart';
+import '../model/Lotto.dart';
 
 class SuggestionLottoProvider with ChangeNotifier {
 

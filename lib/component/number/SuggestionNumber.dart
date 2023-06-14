@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../klass/Lotto.dart';
+import '../../model/Lotto.dart';
 
 class SuggestionNumber extends StatelessWidget{
 
