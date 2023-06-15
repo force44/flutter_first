@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../component/utils/HttpUtils.dart';
+import '../../model/Login.dart';
 import '../../provider/LoginProvider.dart';
 import '../../screen_index.dart';
 
@@ -15,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
 
   Widget _userIdWidget(){
     return TextFormField(
@@ -51,6 +56,15 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  void _scaffoldMessenger(String msg){
+    if(!mounted) return;
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(
+          content:Text(msg))
+      );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,12 +89,37 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 padding: const EdgeInsets.only(top: 8.0), // 8단위 배수가 보기 좋음
                 child: ElevatedButton(
-                    onPressed: () async {
+                    onPressed: ()   async {
+                      var paramData = json.encode( {"loginId" : _idController.value.text, "password" : _passwordController.value.text});
 
+                      if(_idController.value.text == '' || _passwordController.value.text == ''){
+                          _scaffoldMessenger( 'input check!');
+                          return;
+                      }
 
-                      await
+                      var response =  await HttpUtils.post('/login', paramData);
 
-                      //context.read<LoginProvider>().login(_idController.value.text, _passwordController.value.text);
+                      if(response.statusCode == 200){
+
+                        Login loginInfo = Login.fromJson(jsonDecode(response.body)['data']);
+                        _scaffoldMessenger('welcome! ${_idController.value.text} ');
+
+                        if(!mounted) return;
+                        context.read<LoginProvider>().login(loginInfo);
+                        Navigator.pushReplacementNamed(context, '/index');
+
+                      }else{
+                        _scaffoldMessenger('login info check!!');
+                      }
+
+                      // if(response.statusCode == 200){
+                      //   ScaffoldMessenger.of(context)
+                      //     ..hideCurrentSnackBar()
+                      //     ..showSnackBar(SnackBar(
+                      //         content:
+                      //         Text('welcome! ${_idController.value.text} ')));
+                      //   Navigator.pushReplacementNamed(context, '/index');
+                      // }
 
                       // ScaffoldMessenger.of(context).showSnackBar(
                       //   SnackBar(
@@ -98,12 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                       //   ),
                       // );
 
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(SnackBar(
-                            content:
-                            Text('welcome! ${_idController.value.text} ')));
-                      Navigator.pushReplacementNamed(context, '/index');
+
 
 
 
