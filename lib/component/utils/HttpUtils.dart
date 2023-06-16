@@ -9,13 +9,17 @@ class HttpUtils {
 
 
   static Future<Response> post(String url, var paramData) async{
-
-    print( "$_context$url");
-    print( paramData);
     return await http.post(
         Uri.parse( "$_context$url"),
         headers: {"Content-Type": "application/json;charset=UTF-8"},
         body: paramData
+    );
+  }
+
+  static Future<Response> get(String url, var paramData) async{
+    return await http.get(
+        Uri.parse( "$_context$url"),
+        headers: {"Content-Type": "application/json;charset=UTF-8"}
     );
   }
 }

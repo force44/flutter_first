@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../../component/utils/HttpUtils.dart';
 import '../../model/Login.dart';
 import '../../provider/LoginProvider.dart';
-import '../../screen_index.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -106,6 +105,7 @@ class _LoginPageState extends State<LoginPage> {
 
                         if(!mounted) return;
                         context.read<LoginProvider>().login(loginInfo);
+                        print(">>>>>>>>>>>>>>");
                         Navigator.pushReplacementNamed(context, '/index');
 
                       }else{

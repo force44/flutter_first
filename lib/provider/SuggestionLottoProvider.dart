@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_first/component/utils/HttpUtils.dart';
 import 'dart:convert';
-import '../component/utils/Constant.dart';
-import 'package:http/http.dart' as http;
 
 import '../model/Lotto.dart';
 
@@ -13,21 +12,13 @@ class SuggestionLottoProvider with ChangeNotifier {
    List get suggestionLotto => _list;
 
   void _requestSuggestionLottoList(String? type) async {
-    var url = Uri.parse(
-        "${Constant.url}/lotto-suggestion/list",
-    );
 
     var paramData = json.encode( { "keyWord": type, "filter" : { "pageIndex" : 0, "pageSize" : 100}});
-    var response = await http.post(
-        url,
-        headers: Constant.httpHeaders,
-        body: paramData
-    );
+    var response = await HttpUtils.post("/lotto-suggestion/list", paramData);
 
     _list = List<Lotto>.empty(growable:true);
     Map<String, dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
     List<dynamic> lottoList = jsonData['data']['lists'];
-    //print(lottoList);
      for(dynamic lotto in lottoList){
          _list.add(Lotto.fromJson(lotto));
      }

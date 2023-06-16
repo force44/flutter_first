@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import '../component/utils/Constant.dart';
+import '../component/utils/HttpUtils.dart';
 import '../model/LottoStat.dart';
-import 'package:http/http.dart' as http;
 
 class LottoStatProvider with ChangeNotifier {
   int _count = 0;
@@ -22,18 +21,10 @@ class LottoStatProvider with ChangeNotifier {
   List get countByWinNumbers => _countByWinNumbers;
   List get historyGrade => _historyGrade;
 
-  // //4.230.35.161:8080/
   void _requestSuggestionLotto(String seed, String form, String to) async {
-    var url = Uri.parse(
-       "${Constant.url}/lotto-suggestion",
-    );
 
     var paramData = json.encode( {"from" : form, "to" : to, "seed" : seed});
-    var response = await http.post(
-        url,
-        headers: Constant.httpHeaders,
-        body: paramData
-    );
+    var response = await HttpUtils.post("/lotto-suggestion", paramData);
 
     Map<String, dynamic> jsonData = jsonDecode(response.body);
     LottoStat lotto = LottoStat.fromJson(jsonData['data']);
@@ -49,9 +40,6 @@ class LottoStatProvider with ChangeNotifier {
   }
 
   void _saveLotto() async {
-    var url = Uri.parse(
-      'http://localhost:81/lotto',
-    );
     var paramData = json.encode({ "first" : _lottoNumber[0]
                                   , "second" : _lottoNumber[1]
                                   , "third" : _lottoNumber[2]
@@ -62,11 +50,7 @@ class LottoStatProvider with ChangeNotifier {
                                   , "type" : 'R'
     });
 
-    await http.post(
-        url,
-        headers: {"Content-Type": "application/json;charset=UTF-8"},
-        body: paramData
-    );
+    HttpUtils.post("/lotto", paramData);
     ++_count;
     notifyListeners();
   }
@@ -78,5 +62,4 @@ class LottoStatProvider with ChangeNotifier {
   void saveLotto() {
     _saveLotto();
   }
-
 }

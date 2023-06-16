@@ -1,3 +1,5 @@
+import 'LottoSummary.dart';
+
 class Lotto{
   int id = 0;
   int turn = 0;
@@ -7,11 +9,9 @@ class Lotto{
   int fourth = 0;
   int fifth = 0;
   int sixth = 0;
+  String date = "";
   String grade = "";
-
-  Lotto(){
-    print(">>>>>>>>>>>>>>>>>>>>>> default");
-  }
+  LottoSummary lottoSummary;
 
   Lotto.init(this.id
       , this.turn
@@ -21,11 +21,14 @@ class Lotto{
       , this.fourth
       , this.fifth
       , this.sixth
+      , this.date
       , this.grade
+      , this.lottoSummary
       );
 
   factory Lotto.fromJson(Map<String, dynamic> json) {
-    return Lotto.init(json['id']
+    return Lotto.init(
+          json['id']
         , json['turn']
         , json['first']
         , json['second']
@@ -33,7 +36,9 @@ class Lotto{
         , json['fourth']
         , json['fifth']
         , json['sixth']
+        , json['date']
         , json['grade']
+        , LottoSummary.fromJson(json['lottoSummary'])
     );
   }
 }
