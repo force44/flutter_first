@@ -4,22 +4,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_first/provider/WinLottoProvider.dart';
 import 'package:provider/provider.dart';
 
+import '../component/number/ColorNumber.dart';
 import '../component/utils/HttpUtils.dart';
 import '../model/Lotto.dart';
 
 class TabHome extends StatelessWidget{
 
 
-  Future _future(BuildContext context) async {
+  Future _future() async {
     var response = await HttpUtils.get("/lotto", null);
     Map<String, dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
-    Lotto _lotto = Lotto.fromJson(jsonData['data']);
-    return  _lotto.turn; // 5초 후 '짜잔!' 리턴
+    Lotto lotto = Lotto.fromJson(jsonData['data']);
+    return  _WinStatWidget(lotto); // 5초 후 '짜잔!' 리턴
   }
 
 
   Widget _WinStatWidget(Lotto lotto){
-    
+
+    List<Expanded> numbers = [];
+    numbers.add(_layOutNumber(lotto.first));
+    numbers.add(_layOutNumber(lotto.second));
+    numbers.add(_layOutNumber(lotto.third));
+    numbers.add(_layOutNumber(lotto.fourth));
+    numbers.add(_layOutNumber(lotto.fifth));
+    numbers.add(_layOutNumber(lotto.sixth));
+   // numbers.add(_layOutNumber(lotto.bo));
+
     return Column(
       children: [
                 Row( 
@@ -28,10 +38,34 @@ class TabHome extends StatelessWidget{
                       Text(" 당첨번호")
                     ]
                 ),
-                Text("( ${lotto.date} )"),
+                Text("( ${lotto.regDt} )"),
+                Row(
+                    children: numbers
+                ),
       ],
       
     );
+  }
+
+  Expanded _layOutNumber(int number){
+    String numberTxt = number.toString();
+    if(number < 10) {
+      numberTxt = "0$numberTxt";      // 일의 자리는 0을 붙여 준다.
+    }
+    return
+      Expanded(
+          flex: 1,
+          child:
+          Container(
+              margin: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(5.0),
+              decoration: BoxDecoration(
+                color: ColorNumber.getColorOfNumber(number),
+                borderRadius: BorderRadius.circular(360),
+              ),
+              child: Text(numberTxt, style: const TextStyle(fontWeight:FontWeight.w400, fontSize: 12), textAlign:TextAlign.center)
+          )
+      );
   }
 
   @override
@@ -137,7 +171,7 @@ class TabHome extends StatelessWidget{
                        ],
                      ),
                      child:    FutureBuilder(
-                         future: _future(context),
+                         future: _future(),
                          builder: (BuildContext context, AsyncSnapshot snapshot) {
                            //해당 부분은 data를 아직 받아 오지 못했을 때 실행되는 부분
                            if (snapshot.hasData == false) {
@@ -161,10 +195,7 @@ class TabHome extends StatelessWidget{
                              return Padding(
                                padding: const EdgeInsets.all(8.0),
 
-                               child: Text(
-                                 snapshot.data, // 비동기 처리를 통해 받은 데이터를 텍스트에 뿌려줌
-                                 style: TextStyle(fontSize: 15),
-                               ),
+                               child: snapshot.data
                              );
                            }
                          })

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../model/Lotto.dart';
+import 'ColorNumber.dart';
 
 class SuggestionNumber extends StatelessWidget{
 
@@ -11,19 +12,6 @@ class SuggestionNumber extends StatelessWidget{
      super.key,
   });
 
-  Color _getNumberColor(int number){
-    Color color = const Color(0xfffbc400);
-    if(number >= 40){
-      color = const Color(0xffb0d840);
-    }else if(number >= 30 && number < 40){
-      color = const Color(0xffaaaaaa);
-    }else if(number >= 20 && number < 30){
-      color = const Color(0xffff7272);
-    }else if(number >= 10 && number < 20){
-      color = const Color(0xff69c8f2);
-    }
-    return color;
-  }
 
   // 추천 번호들 나래비!
   List<SizedBox> _getLottoNumber() {
@@ -115,7 +103,7 @@ class SuggestionNumber extends StatelessWidget{
                 margin: const EdgeInsets.all(4.0),
                 padding: const EdgeInsets.all(5.0),
                 decoration: BoxDecoration(
-                  color: _getNumberColor(number),
+                  color: ColorNumber.getColorOfNumber(number),
                   borderRadius: BorderRadius.circular(360),
                   // border: Border.all(color:  _getNumberColor(number), width: 1),
                 ),
@@ -123,6 +111,7 @@ class SuggestionNumber extends StatelessWidget{
             )
       );
   }
+
   @override
   Widget build(BuildContext context) {
     return
