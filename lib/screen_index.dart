@@ -17,7 +17,7 @@ class IndexScreenState extends State<IndexScreen> {
 
   final List<Widget> tabs = [
     TabHome(),
-    TabSearch(),
+    //TabSearch(),
     TabLuck(),
     TabProfile(),
   ];
@@ -41,9 +41,9 @@ class IndexScreenState extends State<IndexScreen> {
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'search'),
+         // BottomNavigationBarItem(icon: Icon(Icons.search), label: 'search'),
           BottomNavigationBarItem(icon: Icon(Icons.recommend), label: 'luck'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'profile'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'history'),
         ],
       ),
     );

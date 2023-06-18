@@ -9,6 +9,7 @@ class Lotto{
   int fourth = 0;
   int fifth = 0;
   int sixth = 0;
+  int bonus = 0;
   String regDt = "";
   String grade = "";
   LottoSummary lottoSummary;
@@ -21,6 +22,7 @@ class Lotto{
       , this.fourth
       , this.fifth
       , this.sixth
+      , this.bonus
       , this.regDt
       , this.grade
       , this.lottoSummary
@@ -36,6 +38,7 @@ class Lotto{
         , json['fourth']
         , json['fifth']
         , json['sixth']
+        , json['bonus']
         , json['regDt']
         , json['grade']
         , LottoSummary.fromJson(json['lottoSummary'])

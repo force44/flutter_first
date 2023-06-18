@@ -15,9 +15,9 @@ class TabProfile extends StatefulWidget {
 class _TabProfile extends State<TabProfile>{
   String turn = '1070';
   final Map<String, String> _valueList = {
-                                              'a' : 'All',
-                                              'b' : 'Luck',
-                                              's' : 'Save'
+                                              'a' : '전체s',
+                                              'b' : '만들어낸',
+                                              's' : '저장한'
   };
   String _type = 'a';
 
@@ -43,11 +43,11 @@ class _TabProfile extends State<TabProfile>{
                                   child: Row(
                                     children: [
                                       Expanded(
-                                          flex :2,
+                                          flex :3,
                                           child: Row(
                                               children: [
                                                 Container(
-                                                  width: 60,
+                                                  width: 80,
                                                   margin: const EdgeInsets.all(5.0),
                                                   child: TextField(
                                                           onChanged: (text) {
@@ -56,17 +56,17 @@ class _TabProfile extends State<TabProfile>{
                                                             });
                                                           }
                                                           //, maxLength : 4
-                                                          //,inputFormatters:[LengthLimitingTextInputFormatter(4)]
+                                                          ,inputFormatters:[LengthLimitingTextInputFormatter(4)]
                                                           ,decoration: InputDecoration(
                                                                             border: OutlineInputBorder(),
-                                                                            labelText: '회'
+                                                                            labelText: '회차'
                                                                         )
                                                         )
                                                   )
                                                 ,
 
                                                 Container(
-                                                    width: 60,
+                                                    width: 100,
                                                     margin: const EdgeInsets.all(5.0),
                                                     child: DropdownButton(
                                                                 value: _type,
@@ -96,7 +96,7 @@ class _TabProfile extends State<TabProfile>{
                                                               },
                                                               style: OutlinedButton.styleFrom(foregroundColor: Colors.blueAccent),
                                                               child: Center(
-                                                                  child: Text('search', style: TextStyle(fontWeight:FontWeight.w800, color: Colors.blueAccent))
+                                                                  child: Text('검색s', style: TextStyle(fontWeight:FontWeight.w800, color: Colors.blueAccent))
                                                               )
                                                           )
 

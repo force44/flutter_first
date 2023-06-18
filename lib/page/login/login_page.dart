@@ -96,21 +96,25 @@ class _LoginPageState extends State<LoginPage> {
                           return;
                       }
 
-                      var response =  await HttpUtils.post('/login', paramData);
+                      try{
+                        var response =  await HttpUtils.post('/login', paramData);
 
-                      if(response.statusCode == 200){
+                        if(response.statusCode == 200){
+                          Login loginInfo = Login.fromJson(jsonDecode(response.body)['data']);
+                          _scaffoldMessenger('welcome! ${_idController.value.text} ');
 
-                        Login loginInfo = Login.fromJson(jsonDecode(response.body)['data']);
-                        _scaffoldMessenger('welcome! ${_idController.value.text} ');
+                          if(!mounted) return;
+                          context.read<LoginProvider>().login(loginInfo);
+                          print(">>>>>>>>>>>>>>");
+                          Navigator.pushReplacementNamed(context, '/index');
 
-                        if(!mounted) return;
-                        context.read<LoginProvider>().login(loginInfo);
-                        print(">>>>>>>>>>>>>>");
-                        Navigator.pushReplacementNamed(context, '/index');
-
-                      }else{
-                        _scaffoldMessenger('login info check!!');
+                        }else{
+                          _scaffoldMessenger('login info check!!');
+                        }
+                      }catch(e){
+                        _scaffoldMessenger(e.toString());
                       }
+
 
                       // if(response.statusCode == 200){
                       //   ScaffoldMessenger.of(context)
