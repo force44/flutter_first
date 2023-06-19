@@ -1,21 +1,31 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_first/provider/LoginProvider.dart';
 import 'package:flutter_first/provider/WinLottoProvider.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 
 import '../component/number/ColorNumber.dart';
 import '../component/utils/HttpUtils.dart';
+import '../model/Login.dart';
 import '../model/Lotto.dart';
 
-class TabHome extends StatelessWidget{
+
+class TabHome extends StatefulWidget {
+  const TabHome({super.key});
+
+  @override
+  _TabHome createState() => _TabHome();
+}
+
+class _TabHome extends State<TabHome> {
+
 
   static final storage = FlutterSecureStorage();
 
 
   Future _future() async {
-    print(">>>>>>>>>>>>>>>>>>>>>>");
     var response = await HttpUtils.get("/lotto", null);
     Map<String, dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
     Lotto lotto = Lotto.fromJson(jsonData['data']);
@@ -158,46 +168,58 @@ class TabHome extends StatelessWidget{
       );
   }
 
+
+
   Future _getNickName() async{
     String? nickName = await storage.read(key: '_nickName');
-   return Column(
-            children:  [
-              SizedBox(
-                  width: double.infinity,
-                  child: Text( "$nickName 님, "
-                      , style: TextStyle(fontWeight:FontWeight.w900, fontSize: 18, color: Colors.grey)
-                      , textAlign: TextAlign.left)
-              ),
-              SizedBox(
-                  width: double.infinity,
-                  child: Text( "로또 당첨을 기원드립니다."
-                      , style: TextStyle(fontWeight:FontWeight.w600, fontSize: 16, color: Colors.orangeAccent)
-                      , textAlign: TextAlign.left)
-              )
-            ],
-        );
+    return Column(
+      children:  [
+        SizedBox(
+            width: double.infinity,
+            child: Text( "$nickName 님, "
+                , style: TextStyle(fontWeight:FontWeight.w900, fontSize: 18, color: Colors.grey)
+                , textAlign: TextAlign.left)
+        ),
+        SizedBox(
+            width: double.infinity,
+            child: Text( "로또 당첨을 기원드립니다."
+                , style: TextStyle(fontWeight:FontWeight.w600, fontSize: 16, color: Colors.orangeAccent)
+                , textAlign: TextAlign.left)
+        )
+      ],
+    );
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
 
+    // 비동기로 flutter secure storage 정보를 불러오는 작업
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   _userInfo();
+    // });
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
 
     return ChangeNotifierProvider(
              create: (BuildContext context) => WinLottoProvider(),
              child :  Column(
                          children: [
                            Container(
-                              margin: const EdgeInsets.fromLTRB(15, 10, 0, 5),
-                              width: double.infinity,
-                              child:  FutureBuilder(
-                                 future: _getNickName(),
-                                 builder: (BuildContext context, AsyncSnapshot snapshot) {
+                               margin: const EdgeInsets.fromLTRB(15, 10, 0, 5),
+                               width: double.infinity,
+                               child:  FutureBuilder(
+                                   future: _getNickName(),
+                                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                                      return Padding(
                                          padding: const EdgeInsets.all(8.0),
                                          child: snapshot.data
                                      );
-                                 })
-                             ),
+                                   })
+                           ),
 
 
                            Container(
@@ -241,7 +263,7 @@ class TabHome extends StatelessWidget{
                                          children: [
                                            Container(
                                                margin: const EdgeInsets.all(1.0),
-                                               child: Text("이번 회차 추천")),
+                                               child: Text("회차 추천")),
                                            Container(
                                                margin: const EdgeInsets.all(1.0),
                                                child: Text("30", style: TextStyle(fontWeight:FontWeight.w700))),

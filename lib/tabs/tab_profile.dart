@@ -13,7 +13,7 @@ class TabProfile extends StatefulWidget {
 
 
 class _TabProfile extends State<TabProfile>{
-  String turn = '1070';
+  String _turn = '0';
   final Map<String, String> _valueList = {
                                               'A' : '전체s',
                                               'R' : '만들어낸',
@@ -52,7 +52,7 @@ class _TabProfile extends State<TabProfile>{
                                                   child: TextField(
                                                           onChanged: (text) {
                                                             setState(() {
-                                                              turn = text;
+                                                              _turn = text;
                                                             });
                                                           }
                                                           //, maxLength : 4
@@ -92,7 +92,8 @@ class _TabProfile extends State<TabProfile>{
                                                       height: 40,
                                                       child:  OutlinedButton(
                                                               onPressed: () {
-                                                                context.read<SuggestionLottoProvider>().searchList(_type);
+                                                                if( _turn.isEmpty) _turn = '0';
+                                                                context.read<SuggestionLottoProvider>().searchList(_turn, _type);
                                                               },
                                                               style: OutlinedButton.styleFrom(foregroundColor: Colors.blueAccent),
                                                               child: Center(

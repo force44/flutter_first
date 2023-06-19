@@ -11,9 +11,9 @@ class SuggestionLottoProvider with ChangeNotifier {
 
    List get suggestionLotto => _list;
 
-  void _requestSuggestionLottoList(String? type) async {
+  void _requestSuggestionLottoList(String? turn, String? type) async {
 
-    var paramData = json.encode( { "keyWord": type, "filter" : { "pageIndex" : 0, "pageSize" : 100}});
+    var paramData = json.encode( {"turn" : turn, "keyWord": type, "filter" : { "pageIndex" : 0, "pageSize" : 100}});
     var response = await HttpUtils.post("/lotto-suggestion/list", paramData);
 
     _list = List<Lotto>.empty(growable:true);
@@ -25,7 +25,7 @@ class SuggestionLottoProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void searchList(String type) {
-    _requestSuggestionLottoList(type);
+  void searchList(String turn, String type) {
+    _requestSuggestionLottoList(turn, type);
   }
 }

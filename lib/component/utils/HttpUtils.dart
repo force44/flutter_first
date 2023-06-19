@@ -10,7 +10,6 @@ class HttpUtils {
 
   static final storage = FlutterSecureStorage();
 
-
   static Future<Response> login(var paramData) async{
     print("$_context/login");
     print("paramData : $paramData" );
@@ -23,12 +22,10 @@ class HttpUtils {
     );
   }
 
-
   static Future<Response> post(String url, var paramData) async{
    print("post : $_context$url" );
    print("paramData : $paramData" );
    var token =  await storage.read(key: '_token');
-   print("token : $token" );
     return await http.post(
         Uri.parse( "$_context$url"),
         headers:  {

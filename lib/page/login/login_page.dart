@@ -68,10 +68,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void setStorage(Login loginInfo) async{
-    print("loginInfo");
-    print(loginInfo);
-    await storage.write( key: '_token', value: loginInfo.token );
-    await storage.write( key: '_nickName', value: loginInfo.nickName );
+    await storage.write( key: '_token', value: loginInfo.token);
+    await storage.write( key: '_nickName', value: loginInfo.nickName);
   }
 
   @override
@@ -112,12 +110,13 @@ class _LoginPageState extends State<LoginPage> {
 
                         if(response.statusCode == 200){
                           Login loginInfo = Login.fromJson(jsonDecode(response.body)['data']);
-                          _scaffoldMessenger('welcome! ${_idController.value.text} ');
 
-                          setStorage(loginInfo);
+                          _scaffoldMessenger('welcome! ${loginInfo.nickName} ');
 
                           if(!mounted) return;
-                          context.read<LoginProvider>().login(loginInfo);
+                          //context.read<LoginProvider>().login(loginInfo);
+
+                          setStorage(loginInfo);
                           Navigator.pushReplacementNamed(context, '/index');
 
                         }else{
