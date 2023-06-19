@@ -15,11 +15,11 @@ class TabProfile extends StatefulWidget {
 class _TabProfile extends State<TabProfile>{
   String turn = '1070';
   final Map<String, String> _valueList = {
-                                              'a' : '전체s',
-                                              'b' : '만들어낸',
-                                              's' : '저장한'
+                                              'A' : '전체s',
+                                              'R' : '만들어낸',
+                                              'S' : '저장한'
   };
-  String _type = 'a';
+  String _type = 'A';
 
   @override
   Widget build(BuildContext context) {

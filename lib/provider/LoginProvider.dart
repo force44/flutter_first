@@ -11,7 +11,6 @@ class LoginProvider with ChangeNotifier {
 
   void _login(Login loginInfo)  async {
     _loginInfo = loginInfo;
-    print(_loginInfo);
     notifyListeners();
   }
 

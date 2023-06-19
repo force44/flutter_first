@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_first/provider/WinLottoProvider.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 
 import '../component/number/ColorNumber.dart';
@@ -10,7 +11,11 @@ import '../model/Lotto.dart';
 
 class TabHome extends StatelessWidget{
 
+  static final storage = FlutterSecureStorage();
+
+
   Future _future() async {
+    print(">>>>>>>>>>>>>>>>>>>>>>");
     var response = await HttpUtils.get("/lotto", null);
     Map<String, dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
     Lotto lotto = Lotto.fromJson(jsonData['data']);
@@ -112,7 +117,6 @@ class TabHome extends StatelessWidget{
     );
   }
 
-
   Expanded _layOutPlus(){
     return
       Expanded(
@@ -154,8 +158,29 @@ class TabHome extends StatelessWidget{
       );
   }
 
+  Future _getNickName() async{
+    String? nickName = await storage.read(key: '_nickName');
+   return Column(
+            children:  [
+              SizedBox(
+                  width: double.infinity,
+                  child: Text( "$nickName 님, "
+                      , style: TextStyle(fontWeight:FontWeight.w900, fontSize: 18, color: Colors.grey)
+                      , textAlign: TextAlign.left)
+              ),
+              SizedBox(
+                  width: double.infinity,
+                  child: Text( "로또 당첨을 기원드립니다."
+                      , style: TextStyle(fontWeight:FontWeight.w600, fontSize: 16, color: Colors.orangeAccent)
+                      , textAlign: TextAlign.left)
+              )
+            ],
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
+
 
     return ChangeNotifierProvider(
              create: (BuildContext context) => WinLottoProvider(),
@@ -163,38 +188,15 @@ class TabHome extends StatelessWidget{
                          children: [
                            Container(
                               margin: const EdgeInsets.fromLTRB(15, 10, 0, 5),
-                             //padding: const EdgeInsets.all(10.0),
-                             // decoration: BoxDecoration(
-                             //   color: Colors.white,
-                             //   borderRadius: BorderRadius.circular(10),
-                             //   border: Border.all(color: Colors.black12, width: 1),
-                             //   boxShadow: [
-                             //     BoxShadow(
-                             //       color: Colors.grey.withOpacity(0.5),
-                             //       spreadRadius: 1,
-                             //       blurRadius: 4,
-                             //       offset: Offset(0, 3), // changes position of shadow
-                             //     ),
-                             //   ],
-                             // ),
-                             // color : Colors.cyanAccent,
-                             width: double.infinity,
-                             child: Column(
-                                children: const [
-                                  SizedBox(
-                                      width: double.infinity,
-                                      child: Text( "땅콩샌드 님,"
-                                                  , style: TextStyle(fontWeight:FontWeight.w900, fontSize: 18, color: Colors.grey)
-                                                  , textAlign: TextAlign.left)
-                                  ),
-                                 SizedBox(
-                                   width: double.infinity,
-                                     child: Text( "로또 당첨을 기원합니다."
-                                      , style: TextStyle(fontWeight:FontWeight.w600, fontSize: 16, color: Colors.orangeAccent)
-                                      , textAlign: TextAlign.left)
-                                 )
-                                ],
-                             )
+                              width: double.infinity,
+                              child:  FutureBuilder(
+                                 future: _getNickName(),
+                                 builder: (BuildContext context, AsyncSnapshot snapshot) {
+                                     return Padding(
+                                         padding: const EdgeInsets.all(8.0),
+                                         child: snapshot.data
+                                     );
+                                 })
                              ),
 
 

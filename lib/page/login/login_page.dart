@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 
 import '../../component/utils/HttpUtils.dart';
@@ -19,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  static final storage = FlutterSecureStorage();
 
   Widget _userIdWidget(){
     return TextFormField(
@@ -41,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
     return TextFormField(
       controller: _passwordController,
       obscureText: true,
-      keyboardType: TextInputType.number,
+      ///keyboardType: TextInputType.number,
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
         labelText: 'Password',
@@ -64,6 +67,13 @@ class _LoginPageState extends State<LoginPage> {
       );
   }
 
+  void setStorage(Login loginInfo) async{
+    print("loginInfo");
+    print(loginInfo);
+    await storage.write( key: '_token', value: loginInfo.token );
+    await storage.write( key: '_nickName', value: loginInfo.nickName );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,12 +89,13 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               //Image(width: 400.0, height: 250.0, image: AssetImage(_imageFile)),
-              const SizedBox(height: 20.0),
+              SizedBox(height: 20.0),
               _userIdWidget(),
-              const SizedBox(height: 20.0),
+              SizedBox(height: 20.0),
               _passwordWidget(),
               Container(
-                height: 70,
+                margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                height: 60,
                 width: double.infinity,
                 padding: const EdgeInsets.only(top: 8.0), // 8단위 배수가 보기 좋음
                 child: ElevatedButton(
@@ -97,15 +108,16 @@ class _LoginPageState extends State<LoginPage> {
                       }
 
                       try{
-                        var response =  await HttpUtils.post('/login', paramData);
+                        var response =  await HttpUtils.login(paramData);
 
                         if(response.statusCode == 200){
                           Login loginInfo = Login.fromJson(jsonDecode(response.body)['data']);
                           _scaffoldMessenger('welcome! ${_idController.value.text} ');
 
+                          setStorage(loginInfo);
+
                           if(!mounted) return;
                           context.read<LoginProvider>().login(loginInfo);
-                          print(">>>>>>>>>>>>>>");
                           Navigator.pushReplacementNamed(context, '/index');
 
                         }else{
@@ -149,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: const Text("Sign In")
                 ),
               ),
-              const SizedBox(height: 20.0),
+              SizedBox(height: 20.0),
               // GestureDetector(
               //   child: const Text('회원 가입'),
               //   onTap: (){

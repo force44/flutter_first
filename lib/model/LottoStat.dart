@@ -1,4 +1,5 @@
 class LottoStat{
+  double lottoId = 0;
   int turn = 0;
   String oddAndEvenRate = "";
   int numberSum = 0;
@@ -8,10 +9,12 @@ class LottoStat{
   List historyGrade = List<int>.filled(6, 0);
 
   LottoStat(){
-    print(">>>>>>>>>>>>>>>>>>>>>> default");
+    //print(">>>>>>>>>>>>>>>>>>>>>> default");
   }
 
-  LottoStat.init(this.turn
+  LottoStat.init(
+        this.lottoId
+      , this.turn
       , this.lottoNumbers
       , this.countByWinNumbers
       , this.historyGrade
@@ -20,7 +23,9 @@ class LottoStat{
       , this.transferNumber);
 
   factory LottoStat.fromJson(Map<String, dynamic> json) {
-    return LottoStat.init(json['turn']
+    return LottoStat.init(
+          json['lottoId']
+        , json['turn']
         , json['lottoNumbers']
         , json['countByWinNumbers']
         , json['historyGrade']
@@ -29,4 +34,3 @@ class LottoStat{
         , json['transferNumber']);
   }
 }
-

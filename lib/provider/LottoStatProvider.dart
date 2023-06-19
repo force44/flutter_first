@@ -7,6 +7,9 @@ class LottoStatProvider with ChangeNotifier {
   int _count = 0;
   int _numberSum = 0;
   int _turn = 0;
+
+  double _lottoId = 0;
+
   String _oddAndEvenRate = " 0 : 0";
   String _transferNumber = "0";
   List _lottoNumber =List<int>.filled(6, 0);
@@ -36,19 +39,12 @@ class LottoStatProvider with ChangeNotifier {
     _historyGrade = lotto.historyGrade;
     _transferNumber = lotto.transferNumber;
     _turn = lotto.turn;
+    _lottoId = lotto.lottoId;
     notifyListeners();
   }
 
   void _saveLotto() async {
-    var paramData = json.encode({ "first" : _lottoNumber[0]
-                                  , "second" : _lottoNumber[1]
-                                  , "third" : _lottoNumber[2]
-                                  , "fourth" : _lottoNumber[3]
-                                  , "fifth" : _lottoNumber[4]
-                                  , "sixth" : _lottoNumber[5]
-                                  , "turn" : _turn
-                                  , "type" : 'R'
-    });
+    var paramData = json.encode({ "id" :_lottoId});
 
     HttpUtils.post("/lotto", paramData);
     ++_count;
