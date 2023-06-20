@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 import '../component/number/CountWinNumber.dart';
 import '../provider/LottoStatProvider.dart';
@@ -18,6 +19,25 @@ class _TabLuck extends State<TabLuck> {
   String seed = '';
   String from = '';
   String to = '';
+
+  static final storage = FlutterSecureStorage();
+
+  Future<String?> _getTurn() async{
+    String? turn = await storage.read(key: '_turn');
+    if( to == '' && turn != null){
+      to = turn;
+    }
+    return turn;
+  }
+
+  @override
+  void initState() {
+    // 앱이 시작되면 시간을 재기 시작한다.
+    super.initState();
+    //await storage.read(key: '_turn')
+    print("initState");
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -31,13 +51,25 @@ class _TabLuck extends State<TabLuck> {
                                       margin: const EdgeInsets.fromLTRB(15, 10, 0, 5),
                                       width: double.infinity,
                                       child:  Column(
-                                        children:  const [
-                                          SizedBox(
-                                              width: double.infinity,
-                                              child: Text( "1073 회차 가즈아!"
-                                                  , style: TextStyle(fontWeight:FontWeight.w900, fontSize: 18, color: Colors.grey)
-                                                  , textAlign: TextAlign.left)
-                                          )
+                                        children:   [
+                                          // SizedBox(
+                                          //     width: double.infinity,
+                                          //     child: Text( "$to 회차 가즈아!"
+                                          //         , style: TextStyle(fontWeight:FontWeight.w900, fontSize: 18, color: Colors.grey)
+                                          //         , textAlign: TextAlign.left)
+                                          // )
+
+                                          FutureBuilder(
+                                              future: _getTurn(),
+                                              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                                                return  SizedBox(
+                                                              width: double.infinity,
+                                                              child: Text( "${snapshot.data} 회차 가즈아!"
+                                                                  , style: TextStyle(fontWeight:FontWeight.w600, fontSize: 20, color: Colors.orangeAccent)
+                                                                  , textAlign: TextAlign.left)
+                                                          );
+
+                                              })
                                         ],
                                       )
                                   ),
@@ -113,11 +145,7 @@ class _TabLuck extends State<TabLuck> {
                                                         child: OutlinedButton(
                                                               onPressed: () {
                                                                 if(from == '') setState(() {from = '1000';});
-
-                                                                if(to == '') setState(() {to = '1070';});
-
                                                                 if(seed == '') setState(() {seed = '12';});
-
                                                                 context.read<LottoStatProvider>().suggestionLotto(from, to, seed);
                                                               },
                                                               style: OutlinedButton.styleFrom(foregroundColor: Colors.redAccent),

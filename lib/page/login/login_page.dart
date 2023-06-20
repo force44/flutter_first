@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../../component/utils/HttpUtils.dart';
 import '../../model/Login.dart';
 import '../../provider/LoginProvider.dart';
+import '../../screen_index.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -28,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
       controller: _idController,
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
+        prefixIcon: Icon(Icons.account_box_rounded),
         border: OutlineInputBorder(),
         labelText: 'Login Id',
       ),
@@ -46,6 +48,7 @@ class _LoginPageState extends State<LoginPage> {
       obscureText: true,
       ///keyboardType: TextInputType.number,
       decoration: const InputDecoration(
+        prefixIcon: Icon(Icons.vpn_key_rounded),
         border: OutlineInputBorder(),
         labelText: 'Password',
       ),
@@ -112,12 +115,13 @@ class _LoginPageState extends State<LoginPage> {
                           Login loginInfo = Login.fromJson(jsonDecode(response.body)['data']);
 
                           _scaffoldMessenger('welcome! ${loginInfo.nickName} ');
+                          //setStorage(loginInfo);
 
+                          await storage.write( key: '_token', value: loginInfo.token);
+                          await storage.write( key: '_nickName', value: loginInfo.nickName);
                           if(!mounted) return;
                           //context.read<LoginProvider>().login(loginInfo);
-
-                          setStorage(loginInfo);
-                          Navigator.pushReplacementNamed(context, '/index');
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => IndexScreen()));
 
                         }else{
                           _scaffoldMessenger('login info check!!');

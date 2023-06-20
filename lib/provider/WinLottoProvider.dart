@@ -6,12 +6,9 @@ import '../model/Lotto.dart';
 class WinLottoProvider with ChangeNotifier {
 
   late Lotto _lotto;
-  int _turn = 0;
-
+  //int _turn = 0;
   //Lotto get lotto => _lotto;
-
-  Lotto get lotto => lotto;
-
+  Lotto get lotto => _lotto;
   void _requestWinLotto() async {
     var response = await HttpUtils.get("/lotto", null);
     Map<String, dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));

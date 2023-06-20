@@ -1,14 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_first/provider/LoginProvider.dart';
 import 'package:flutter_first/provider/WinLottoProvider.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 
 import '../component/number/ColorNumber.dart';
 import '../component/utils/HttpUtils.dart';
-import '../model/Login.dart';
 import '../model/Lotto.dart';
 
 
@@ -21,14 +19,15 @@ class TabHome extends StatefulWidget {
 
 class _TabHome extends State<TabHome> {
 
-
   static final storage = FlutterSecureStorage();
 
 
-  Future _future() async {
+  Future _winLotto() async {
     var response = await HttpUtils.get("/lotto", null);
     Map<String, dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
     Lotto lotto = Lotto.fromJson(jsonData['data']);
+
+    await storage.write(key: '_turn', value: (lotto.turn + 1).toString());
     return  winStatWidget(lotto);
   }
 
@@ -158,36 +157,19 @@ class _TabHome extends State<TabHome> {
               margin: const EdgeInsets.all(2.0),
              // padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
              padding: const EdgeInsets.all(6),
-              height: 35,
+              height: 25,
               decoration: BoxDecoration(
                 color: ColorNumber.getColorOfNumber(number),
                 borderRadius: BorderRadius.circular(360),
               ),
-              child: Text(numberTxt, style: TextStyle(fontWeight:FontWeight.w900, fontSize: 20, color: Colors.white70), textAlign:TextAlign.center)
+              child: Text(numberTxt, style: TextStyle(fontWeight:FontWeight.w900, fontSize: 12, color: Colors.white70), textAlign:TextAlign.center)
           )
       );
   }
 
-
-
   Future _getNickName() async{
-    String? nickName = await storage.read(key: '_nickName');
-    return Column(
-      children:  [
-        SizedBox(
-            width: double.infinity,
-            child: Text( "$nickName 님, "
-                , style: TextStyle(fontWeight:FontWeight.w900, fontSize: 18, color: Colors.grey)
-                , textAlign: TextAlign.left)
-        ),
-        SizedBox(
-            width: double.infinity,
-            child: Text( "로또 당첨을 기원드립니다."
-                , style: TextStyle(fontWeight:FontWeight.w600, fontSize: 16, color: Colors.orangeAccent)
-                , textAlign: TextAlign.left)
-        )
-      ],
-    );
+    return await storage.read(key: '_nickName');
+
   }
 
   @override
@@ -216,120 +198,122 @@ class _TabHome extends State<TabHome> {
                                    builder: (BuildContext context, AsyncSnapshot snapshot) {
                                      return Padding(
                                          padding: const EdgeInsets.all(8.0),
-                                         child: snapshot.data
+                                         child: Column(
+                                                   children:  [
+                                                       SizedBox(
+                                                       width: double.infinity,
+                                                           child: Text( "${snapshot.data} 님, "
+                                                               , style: TextStyle(fontWeight:FontWeight.w900, fontSize: 18, color: Colors.grey)
+                                                               , textAlign: TextAlign.left)
+                                                       )
+                                                     ,  SizedBox(
+                                                         width: double.infinity,
+                                                         child: Text( "로또 당첨을 기원드립니다."
+                                                             , style: TextStyle(fontWeight:FontWeight.w600, fontSize: 16, color: Colors.orangeAccent)
+                                                             , textAlign: TextAlign.left)
+                                                      )
+                                                   ])
                                      );
                                    })
                            ),
 
+                           // Container(
+                           //   margin: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+                           //   padding: const EdgeInsets.all(10.0),
+                           //   decoration: BoxDecoration(
+                           //     color: Colors.white,
+                           //     borderRadius: BorderRadius.circular(10),
+                           //     border: Border.all(color: Colors.black12, width: 1),
+                           //     boxShadow: [
+                           //       BoxShadow(
+                           //         color: Colors.grey.withOpacity(0.5),
+                           //         spreadRadius: 1,
+                           //         blurRadius: 4,
+                           //         offset: Offset(0, 3), // changes position of shadow
+                           //       ),
+                           //     ],
+                           //   ),
+                           //   child: Row(
+                           //     children:  [
+                           //       Expanded(
+                           //           flex: 1,
+                           //           child: Column(
+                           //               children: [
+                           //                 Container(
+                           //                     margin: const EdgeInsets.all(1.0),
+                           //                     child: Text("올해 누적")),
+                           //                 Container(
+                           //                     margin: const EdgeInsets.all(1.0),
+                           //                     child: Text("1002", style: TextStyle(fontWeight:FontWeight.w700))),
+                           //                 Container(
+                           //                     margin: const EdgeInsets.all(1.0),
+                           //                     color: Colors.yellow.shade100,
+                           //                     child: Center( child: Text("52", style: TextStyle(color: Colors.orange))))
+                           //               ]
+                           //           )
+                           //       ),
+                           //       Expanded(
+                           //           flex: 1,
+                           //           child: Column(
+                           //               children: [
+                           //                 Container(
+                           //                     margin: const EdgeInsets.all(1.0),
+                           //                     child: Text("회차 추천")),
+                           //                 Container(
+                           //                     margin: const EdgeInsets.all(1.0),
+                           //                     child: Text("30", style: TextStyle(fontWeight:FontWeight.w700))),
+                           //                 Container(
+                           //                     margin: const EdgeInsets.all(1.0),
+                           //                     color: Colors.yellow.shade100,
+                           //                     child: Center( child: Text("5", style: TextStyle(color: Colors.orange))))
+                           //               ]
+                           //           )
+                           //       ),
+                           //       Expanded(
+                           //           flex: 1,
+                           //           child: Column(
+                           //               children: [
+                           //                 Container(
+                           //                     margin: const EdgeInsets.all(1.0),
+                           //                     child: Text("1072회")),
+                           //                 Container(
+                           //                     margin: const EdgeInsets.all(1.0),
+                           //                     child: Text("40", style: TextStyle(fontWeight:FontWeight.w700))),
+                           //                 Container(
+                           //                     width : 40,
+                           //                     margin: const EdgeInsets.all(1.0),
+                           //                     color: Colors.yellow,
+                           //                     child: Center( child: Text("??", style: TextStyle(color: Colors.orange))))
+                           //               ]
+                           //           )
+                           //       )
+                           //     ],
+                           //   ),
+                           // ),
 
                            Container(
-                             margin: const EdgeInsets.fromLTRB(10, 5, 10, 10),
-                             padding: const EdgeInsets.all(10.0),
-                             decoration: BoxDecoration(
-                               color: Colors.white,
-                               borderRadius: BorderRadius.circular(10),
-                               border: Border.all(color: Colors.black12, width: 1),
-                               boxShadow: [
-                                 BoxShadow(
-                                   color: Colors.grey.withOpacity(0.5),
-                                   spreadRadius: 1,
-                                   blurRadius: 4,
-                                   offset: Offset(0, 3), // changes position of shadow
-                                 ),
-                               ],
+                            margin: const EdgeInsets.all(10.0),
+                            padding: const EdgeInsets.all(10.0),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Colors.black12, width: 1),
+                            boxShadow: [
+                             BoxShadow(
+                               color: Colors.grey.withOpacity(0.5),
+                               spreadRadius: 1,
+                               blurRadius: 4,
+                               offset: Offset(0, 3), // changes position of shadow
                              ),
-                             child: Row(
-                               children:  [
-                                 Expanded(
-                                     flex: 1,
-                                     child: Column(
-                                         children: [
-                                           Container(
-                                               margin: const EdgeInsets.all(1.0),
-                                               child: Text("올해 누적")),
-                                           Container(
-                                               margin: const EdgeInsets.all(1.0),
-                                               child: Text("1002", style: TextStyle(fontWeight:FontWeight.w700))),
-                                           Container(
-                                               margin: const EdgeInsets.all(1.0),
-                                               color: Colors.yellow.shade100,
-                                               child: Center( child: Text("52", style: TextStyle(color: Colors.orange))))
-                                         ]
-                                     )
-                                 ),
-                                 Expanded(
-                                     flex: 1,
-                                     child: Column(
-                                         children: [
-                                           Container(
-                                               margin: const EdgeInsets.all(1.0),
-                                               child: Text("회차 추천")),
-                                           Container(
-                                               margin: const EdgeInsets.all(1.0),
-                                               child: Text("30", style: TextStyle(fontWeight:FontWeight.w700))),
-                                           Container(
-                                               margin: const EdgeInsets.all(1.0),
-                                               color: Colors.yellow.shade100,
-                                               child: Center( child: Text("5", style: TextStyle(color: Colors.orange))))
-                                         ]
-                                     )
-                                 ),
-                                 Expanded(
-                                     flex: 1,
-                                     child: Column(
-                                         children: [
-                                           Container(
-                                               margin: const EdgeInsets.all(1.0),
-                                               child: Text("1072회")),
-                                           Container(
-                                               margin: const EdgeInsets.all(1.0),
-                                               child: Text("40", style: TextStyle(fontWeight:FontWeight.w700))),
-                                           Container(
-                                               width : 40,
-                                               margin: const EdgeInsets.all(1.0),
-                                               color: Colors.yellow,
-                                               child: Center( child: Text("??", style: TextStyle(color: Colors.orange))))
-                                         ]
-                                     )
-                                 )
-                               ],
-                             ),
-                           ),
-
-                           Container(
-                             margin: const EdgeInsets.all(10.0),
-                             padding: const EdgeInsets.all(10.0),
-                             decoration: BoxDecoration(
-                               color: Colors.white,
-                               borderRadius: BorderRadius.circular(10),
-                               border: Border.all(color: Colors.black12, width: 1),
-                               boxShadow: [
-                                 BoxShadow(
-                                   color: Colors.grey.withOpacity(0.5),
-                                   spreadRadius: 1,
-                                   blurRadius: 4,
-                                   offset: Offset(0, 3), // changes position of shadow
-                                 ),
-                               ],
+                            ],
                              ),
                              child:    FutureBuilder(
-                                 future: _future(),
+                                 future: _winLotto(),
                                  builder: (BuildContext context, AsyncSnapshot snapshot) {
                                    //해당 부분은 data를 아직 받아 오지 못했을 때 실행되는 부분
                                    if (snapshot.hasData == false) {
-                                     return CircularProgressIndicator(); // CircularProgressIndicator : 로딩 에니메이션
-                                   }
-
-                                   //error가 발생하게 될 경우 반환하게 되는 부분
-                                   else if (snapshot.hasError) {
-                                     return Padding(
-                                       padding: const EdgeInsets.all(8.0),
-
-                                       child: Text(
-                                         'Error: ${snapshot.error}', // 에러명을 텍스트에 뿌려줌
-                                         style: TextStyle(fontSize: 15),
-                                       ),
-                                     );
+                                     return   CircularProgressIndicator(); // CircularProgressIndicator : 로딩 에니메이션
                                    }
 
                                    // 데이터를 정상적으로 받아오게 되면 다음 부분을 실행하게 되는 부분
@@ -340,7 +324,6 @@ class _TabHome extends State<TabHome> {
                                      );
                                    }
                                  })
-
                            )
                          ]
              )
