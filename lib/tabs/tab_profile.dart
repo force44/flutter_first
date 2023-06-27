@@ -119,24 +119,24 @@ class _TabProfile extends State<TabProfile>{
                                         border: Border.all(color: Colors.blueAccent, width: 1),
                                         ),
                                       child: ListView.builder(
-                                itemCount: value.suggestionLotto.length,
-                                itemBuilder: (context, index) {
-                                  return Column(
-                                    children: [
-                                      Container(
-                                          padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
-                                          child: SuggestionNumber(context.watch<SuggestionLottoProvider>().suggestionLotto[index])
-                                      ),
-                                      if (value.isMore && value.currentIndex == index + 1) ...[
-                                        const Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 40),
-                                          child: CircularProgressIndicator(
-                                            color: Colors.deepOrange,
-                                          ),
-                                        ),
-                                      ],
-                                    ],
-                                  );
+                                      itemCount: value.suggestionLotto.length,
+                                      itemBuilder: (context, index) {
+                                        return Column(
+                                          children: [
+                                            Container(
+                                                padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
+                                                child: SuggestionNumber(context.watch<SuggestionLottoProvider>().suggestionLotto[index])
+                                            ),
+                                            if (value.isMore && value.currentIndex == index + 1) ...[
+                                              const Padding(
+                                                padding: EdgeInsets.symmetric(vertical: 40),
+                                                child: CircularProgressIndicator(
+                                                  color: Colors.deepOrange,
+                                                ),
+                                              ),
+                                            ],
+                                          ],
+                                        );
                                 })
                             )
                         )

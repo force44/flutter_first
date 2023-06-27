@@ -48,17 +48,21 @@ class SuggestionLottoProvider with ChangeNotifier {
     if (!isMore) {
       isMore = true;
       notifyListeners();
-      requestSuggestionList(turn, type, true);
-      isMore = false;
-      notifyListeners();
+
+      Future.delayed(const Duration(milliseconds: 500), () {
+        requestSuggestionList(turn, type, true);
+        isMore = false;
+        notifyListeners();
+      });
+
       //var response = await HttpUtils.post("/lotto-suggestion/list", paramData);
     }
 
   }
 
    void listner(ScrollUpdateNotification notification) {
-     if (notification.metrics.maxScrollExtent * 0.85 <
-         notification.metrics.pixels) {
+     if (notification.metrics.maxScrollExtent == notification.metrics.pixels) {
+       print(notification.metrics.pixels);
        _addItem();
      }
    }

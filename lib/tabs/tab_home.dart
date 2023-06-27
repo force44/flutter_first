@@ -274,24 +274,26 @@ class _TabHome extends State<TabHome> {
                             padding: const EdgeInsets.all(10.0),
                             width: double.infinity,
                             decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.black12, width: 1),
-                            boxShadow: [
-                             BoxShadow(
-                               color: Colors.grey.withOpacity(0.5),
-                               spreadRadius: 1,
-                               blurRadius: 4,
-                               offset: Offset(0, 3), // changes position of shadow
-                             ),
-                            ],
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(10),
+                                          border: Border.all(color: Colors.black12, width: 1),
+                                          boxShadow: [
+                                           BoxShadow(
+                                             color: Colors.grey.withOpacity(0.5),
+                                             spreadRadius: 1,
+                                             blurRadius: 4,
+                                             offset: Offset(0, 3), // changes position of shadow
+                                           ),
+                                          ],
                              ),
                              child:    FutureBuilder(
                                  future: _winLotto(),
                                  builder: (BuildContext context, AsyncSnapshot snapshot) {
                                    //해당 부분은 data를 아직 받아 오지 못했을 때 실행되는 부분
                                    if (snapshot.hasData == false) {
-                                     return  CircularProgressIndicator(); // CircularProgressIndicator : 로딩 에니메이션
+                                     return  Center(
+                                         child: CircularProgressIndicator()
+                                     );
                                    }
 
                                    // 데이터를 정상적으로 받아오게 되면 다음 부분을 실행하게 되는 부분
@@ -301,6 +303,8 @@ class _TabHome extends State<TabHome> {
                                        child: snapshot.data
                                      );
                                    }
+
+
                                  })
                            )
                          ]
