@@ -1,5 +1,5 @@
 class LottoStat{
-  double lottoId = 0;
+  int lottoId = 0;
   int turn = 0;
   String oddAndEvenRate = "";
   int numberSum = 0;

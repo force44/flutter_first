@@ -48,80 +48,66 @@ class _TabHome extends State<TabHome> {
             children: [
                       Row(
                           children: [
-                            Text("${lotto.turn} 회 ", style: TextStyle(fontWeight:FontWeight.w900, fontSize: 20, color: Colors.blueAccent)),
-                            Text("당첨번호" , style: TextStyle(fontWeight:FontWeight.w900, fontSize: 16, color: Colors.grey))
+                            Text("${lotto.turn}회 ", style: TextStyle(fontWeight:FontWeight.w900, fontSize: 20, color: Colors.blueAccent)),
+                            Text("당첨번호" , style: TextStyle(fontWeight:FontWeight.w900, fontSize: 20, color: Colors.grey))
                           ]
                       ),
                       Text("( ${lotto.regDt} )"),
                       Container(
-                        margin: const EdgeInsets.fromLTRB(1, 10, 1, 10),
+                        margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                        height: 40,
                         //padding: const EdgeInsets.all(5.0),
                         child: Row(
                             children: numbers
                         ),
                       ),
-                      Row(
-                          children: [
-                            SizedBox(
-                              width: 110,
-                              child: Text("1등 (${summary.firstWinners}명)"),
-                            ),
-                            SizedBox(
-                              width: 110,
-                              child: Text(" ${summary.firstAmount}원" ,style: TextStyle(fontWeight:FontWeight.w900,  color: Colors.redAccent), textAlign: TextAlign.right)
-                            ),
-
-                          ]
-                      ),
-                      Row(
-                          children: [
-                            SizedBox(
-                              width: 110,
-                              child: Text("2등 (${summary.secondWinners}명)"),
-                            ),
-                            SizedBox(
-                              width: 110,
-                              child: Text(" ${summary.secondAmount}원" ,style: TextStyle(fontWeight:FontWeight.w500,  color: Colors.blueAccent), textAlign: TextAlign.right)
-                            )
-                          ]
-                      ),
-                      Row(
-                          children: [
-                            SizedBox(
-                              width: 110,
-                              child: Text("3등 (${summary.thirdWinners}명)"),
-                            ),
-                            SizedBox(
-                              width: 110,
-                              child:
-                              Text(" ${summary.thirdAmount}원" ,style: TextStyle(fontWeight:FontWeight.w500,  color: Colors.blueGrey),  textAlign: TextAlign.right)
-                            )
-                          ]
-                      ),
-                      Row(
-                          children: [
-                            SizedBox(
-                              width: 110,
-                              child: Text("4등 (${summary.fourthWinners}명)"),
-                            ),
-                            SizedBox(
-                              width: 110,
-                              child: Text("50,000원" ,style: TextStyle(fontWeight:FontWeight.w500,  color: Colors.blueGrey),  textAlign: TextAlign.right)
-                            )
-                          ]
-                      ),
-                        Row(
-                            children: [
-                              SizedBox(
-                                width: 110,
-                                child: Text("5등 (${summary.fifthWinners}명)"),
-                              ),
-                              SizedBox(
-                                width: 110,
-                                child: Text("5,000원" ,style: TextStyle(fontWeight:FontWeight.w500,  color: Colors.blueGrey), textAlign: TextAlign.right)
+                      SizedBox(
+                        width: double.infinity,
+                        child: Row(
+                                children: [
+                                  Expanded( flex: 1, child: Text("1등(${summary.firstWinners}명)" , textAlign: TextAlign.left) ),
+                                  Expanded( flex: 2, child: Text("${summary.firstAmount}원" ,style: TextStyle(fontWeight:FontWeight.w900,  color: Colors.redAccent), textAlign: TextAlign.right) )
+                                ],
                               )
-                            ]
-                        )
+                      ),
+
+                      SizedBox(
+                          width: double.infinity,
+                          child: Row(
+                            children: [
+                              Expanded( flex: 1, child: Text("2등(${summary.secondWinners}명)" , textAlign: TextAlign.left) ),
+                              Expanded( flex: 2, child: Text("${summary.secondAmount}원" ,style: TextStyle(fontWeight:FontWeight.w900,  color: Colors.orangeAccent), textAlign: TextAlign.right) )
+                            ],
+                          )
+                      ),
+
+                      SizedBox(
+                          width: double.infinity,
+                          child: Row(
+                            children: [
+                              Expanded( flex: 1, child: Text("3등(${summary.thirdWinners}명)" , textAlign: TextAlign.left) ),
+                              Expanded( flex: 2, child: Text("${summary.thirdAmount}원" ,style: TextStyle(fontWeight:FontWeight.w900,  color: Colors.blueAccent), textAlign: TextAlign.right) )
+                            ],
+                          )
+                      ),
+
+                      SizedBox(
+                          width: double.infinity,
+                          child: Row(
+                            children: [
+                              Expanded( flex: 1, child: Text("4등(${summary.fourthWinners}명)" , textAlign: TextAlign.left) ),
+                            ],
+                          )
+                      ),
+                      SizedBox(
+                          width: double.infinity,
+                          child: Row(
+                            children: [
+                              Expanded( flex: 1, child: Text("5등(${summary.fifthWinners}명)" , textAlign: TextAlign.left) ),
+                            ],
+                          )
+                      ),
+
             ]
     );
   }
@@ -131,14 +117,7 @@ class _TabHome extends State<TabHome> {
       Expanded(
           flex: 1,
           child:
-          Container(
-              margin: const EdgeInsets.all(2.0),
-              padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
-              height: 35,
-              // decoration: BoxDecoration(
-              //   color: ColorNumber.getColorOfNumber(number),
-              //   borderRadius: BorderRadius.circular(360),
-              // ),
+          SizedBox(
               child: Text("+", style: TextStyle(fontWeight:FontWeight.w900, fontSize: 20, color: Colors.grey), textAlign:TextAlign.center)
           )
       );
@@ -156,20 +135,19 @@ class _TabHome extends State<TabHome> {
           Container(
               margin: const EdgeInsets.all(2.0),
              // padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
-             padding: const EdgeInsets.all(6),
-              height: 25,
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+              height: 40,
               decoration: BoxDecoration(
                 color: ColorNumber.getColorOfNumber(number),
                 borderRadius: BorderRadius.circular(360),
               ),
-              child: Text(numberTxt, style: TextStyle(fontWeight:FontWeight.w900, fontSize: 12, color: Colors.white70), textAlign:TextAlign.center)
+              child: Text(numberTxt, style: TextStyle(fontWeight:FontWeight.w700, fontSize: 12, color: Colors.white70), textAlign:TextAlign.center)
           )
       );
   }
 
   Future _getNickName() async{
     return await storage.read(key: '_nickName');
-
   }
 
   @override
@@ -191,7 +169,7 @@ class _TabHome extends State<TabHome> {
              child :  Column(
                          children: [
                            Container(
-                               margin: const EdgeInsets.fromLTRB(15, 10, 0, 5),
+                               margin: const EdgeInsets.fromLTRB(15, 10, 0, 0),
                                width: double.infinity,
                                child:  FutureBuilder(
                                    future: _getNickName(),
@@ -313,7 +291,7 @@ class _TabHome extends State<TabHome> {
                                  builder: (BuildContext context, AsyncSnapshot snapshot) {
                                    //해당 부분은 data를 아직 받아 오지 못했을 때 실행되는 부분
                                    if (snapshot.hasData == false) {
-                                     return   CircularProgressIndicator(); // CircularProgressIndicator : 로딩 에니메이션
+                                     return  CircularProgressIndicator(); // CircularProgressIndicator : 로딩 에니메이션
                                    }
 
                                    // 데이터를 정상적으로 받아오게 되면 다음 부분을 실행하게 되는 부분

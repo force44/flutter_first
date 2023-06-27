@@ -5,38 +5,28 @@ import 'ColorNumber.dart';
 
 class SuggestionNumber extends StatelessWidget{
 
-  final List list;
+  //final List list;
+  final Lotto lotto;
 
   SuggestionNumber(
-     this.list, {
+     this.lotto, {
      super.key,
   });
 
 
   // 추천 번호들 나래비!
-  List<SizedBox> _getLottoNumber() {
-    List<SizedBox> sizeBox = [];
-
-    if(list.isEmpty){
-      sizeBox.add(emptyText());
-      return sizeBox;
-    }
-
-    for(Lotto lotto in list){
-      List<Expanded> numbers = [];
-      numbers.add(layOutTurn(lotto.turn));
-      numbers.add(layOutNumber(lotto.first));
-      numbers.add(layOutNumber(lotto.second));
-      numbers.add(layOutNumber(lotto.third));
-      numbers.add(layOutNumber(lotto.fourth));
-      numbers.add(layOutNumber(lotto.fifth));
-      numbers.add(layOutNumber(lotto.sixth));
-      numbers.add(layOutGrade(lotto.grade));
-      sizeBox.add(SizedBox(child: Row(children: numbers)));
-    }
-     return sizeBox;
+  SizedBox _getLottoNumber() {
+    List<Expanded> numbers = [];
+    numbers.add(layOutTurn(lotto.turn));
+    numbers.add(layOutNumber(lotto.first));
+    numbers.add(layOutNumber(lotto.second));
+    numbers.add(layOutNumber(lotto.third));
+    numbers.add(layOutNumber(lotto.fourth));
+    numbers.add(layOutNumber(lotto.fifth));
+    numbers.add(layOutNumber(lotto.sixth));
+    numbers.add(layOutGrade(lotto.grade));
+    return SizedBox(child: Row(children: numbers));
   }
-
 
   SizedBox emptyText(){
     return
@@ -114,16 +104,6 @@ class SuggestionNumber extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return
-            SizedBox(
-                child:
-                        Center(
-                            child:Column(
-                               // mainAxisSize: MainAxisSize.min,
-                                children: _getLottoNumber()
-                            )
-                        )
-            );
-
+    return _getLottoNumber();
   }
 }

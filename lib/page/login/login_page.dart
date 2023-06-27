@@ -1,13 +1,10 @@
 import 'dart:convert';
-import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:provider/provider.dart';
 
 import '../../component/utils/HttpUtils.dart';
 import '../../model/Login.dart';
-import '../../provider/LoginProvider.dart';
 import '../../screen_index.dart';
 
 class LoginPage extends StatefulWidget {
@@ -112,10 +109,10 @@ class _LoginPageState extends State<LoginPage> {
                         var response =  await HttpUtils.login(paramData);
 
                         if(response.statusCode == 200){
-                          Login loginInfo = Login.fromJson(jsonDecode(response.body)['data']);
+                          Login loginInfo = Login.fromJson(jsonDecode(utf8.decode(response.bodyBytes))['data']);
 
-                          _scaffoldMessenger('welcome! ${loginInfo.nickName} ');
-                          //setStorage(loginInfo);
+                          print(loginInfo.nickName);
+                          _scaffoldMessenger('welcome! ${ loginInfo.nickName} ');
 
                           await storage.write( key: '_token', value: loginInfo.token);
                           await storage.write( key: '_nickName', value: loginInfo.nickName);
@@ -155,11 +152,6 @@ class _LoginPageState extends State<LoginPage> {
                       //     ),
                       //   ),
                       // );
-
-
-
-
-
                     },
                     child: const Text("Sign In")
                 ),

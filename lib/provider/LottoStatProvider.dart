@@ -8,7 +8,7 @@ class LottoStatProvider with ChangeNotifier {
   int _numberSum = 0;
   int _turn = 0;
 
-  double _lottoId = 0;
+  int _lottoId = 0;
 
   String _oddAndEvenRate = " 0 : 0";
   String _transferNumber = "0";
