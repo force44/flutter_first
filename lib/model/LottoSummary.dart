@@ -1,13 +1,12 @@
 class LottoSummary{
   int lottoId = 0;
   String firstAmount = "";
-  int firstWinners = 0;
+  String firstWinners = "";
   String secondAmount = "";
-  int secondWinners = 0;
+  String secondWinners = "";
   String thirdAmount = "";
-  int thirdWinners = 0;
-  int fourthWinners = 0;
-  int fifthWinners = 0;
+  String thirdWinners = "";
+
 
   LottoSummary.init(
         this.lottoId
@@ -17,8 +16,6 @@ class LottoSummary{
       , this.secondWinners
       , this.thirdAmount
       , this.thirdWinners
-      , this.fourthWinners
-      , this.fifthWinners
       );
 
   factory LottoSummary.fromJson(Map<String, dynamic> json) {
@@ -30,8 +27,6 @@ class LottoSummary{
         , json['secondWinners']
         , json['thirdAmount']
         , json['thirdWinners']
-        , json['fourthWinners']
-        , json['fifthWinners']
     );
   }
 }

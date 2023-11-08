@@ -5,7 +5,7 @@ import 'package:http/http.dart';
 
 class HttpUtils {
 
-  static const _context = "http://localhost:81";
+  static const _context = "http://localhost";
 
   static final storage = FlutterSecureStorage();
 

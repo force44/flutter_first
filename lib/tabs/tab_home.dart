@@ -91,22 +91,22 @@ class _TabHome extends State<TabHome> {
                           )
                       ),
 
-                      SizedBox(
-                          width: double.infinity,
-                          child: Row(
-                            children: [
-                              Expanded( flex: 1, child: Text("4등(${summary.fourthWinners}명)" , textAlign: TextAlign.left) ),
-                            ],
-                          )
-                      ),
-                      SizedBox(
-                          width: double.infinity,
-                          child: Row(
-                            children: [
-                              Expanded( flex: 1, child: Text("5등(${summary.fifthWinners}명)" , textAlign: TextAlign.left) ),
-                            ],
-                          )
-                      ),
+                      // SizedBox(
+                      //     width: double.infinity,
+                      //     child: Row(
+                      //       children: [
+                      //         Expanded( flex: 1, child: Text("4등(${summary.fourthWinners}명)" , textAlign: TextAlign.left) ),
+                      //       ],
+                      //     )
+                      // ),
+                      // SizedBox(
+                      //     width: double.infinity,
+                      //     child: Row(
+                      //       children: [
+                      //         Expanded( flex: 1, child: Text("5등(${summary.fifthWinners}명)" , textAlign: TextAlign.left) ),
+                      //       ],
+                      //     )
+                      // ),
 
             ]
     );
@@ -146,8 +146,8 @@ class _TabHome extends State<TabHome> {
       );
   }
 
-  Future _getNickName() async{
-    return await storage.read(key: '_nickName');
+  Future _getNickname() async{
+    return await storage.read(key: '_nickname');
   }
 
   @override
@@ -172,7 +172,7 @@ class _TabHome extends State<TabHome> {
                                margin: const EdgeInsets.fromLTRB(15, 10, 0, 0),
                                width: double.infinity,
                                child:  FutureBuilder(
-                                   future: _getNickName(),
+                                   future: _getNickname(),
                                    builder: (BuildContext context, AsyncSnapshot snapshot) {
                                      return Padding(
                                          padding: const EdgeInsets.all(8.0),
