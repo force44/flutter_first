@@ -29,7 +29,7 @@ class IndexScreenState extends State<IndexScreen> {
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        iconSize: 44,
+        iconSize: 34,
         selectedItemColor: Colors.blueAccent,
         unselectedItemColor: Colors.grey,
         selectedLabelStyle: TextStyle(fontSize: 12),

@@ -32,7 +32,7 @@ class CountWinNumber extends StatelessWidget{
         //   borderRadius: BorderRadius.circular(360),
         //   border: Border.all(color: Colors.black12, width: 1),
         // ),
-        child: Text(number.toString(), style: TextStyle(fontWeight:FontWeight.w700, color: Colors.blueAccent), textAlign:TextAlign.center)
+        child: Text(number.toString(), style: TextStyle(fontWeight:FontWeight.w800, color: Colors.purple), textAlign:TextAlign.center)
     );
   }
 

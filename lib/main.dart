@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         '/index': (context) => IndexScreen(),
         '/login': (context) => LoginPage(),
       },
-      initialRoute: '/login'
+      initialRoute: '/index'
     );
   }
 }

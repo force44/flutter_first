@@ -15,8 +15,8 @@ class TabProfile extends StatefulWidget {
 class _TabProfile extends State<TabProfile>{
   String _turn = '0';
   final Map<String, String> _valueList = {
-                                              'A' : '전체s',
-                                              'R' : '만들어낸',
+                                              'A' : '전체',
+                                              'R' : '추천한',
                                               'S' : '저장한'
   };
   String _type = 'A';
@@ -33,7 +33,6 @@ class _TabProfile extends State<TabProfile>{
           },
           child:   Column(
                       children: [
-
                         Container(
                           margin: const EdgeInsets.all(5.0),
                           padding: const EdgeInsets.all(5.0),

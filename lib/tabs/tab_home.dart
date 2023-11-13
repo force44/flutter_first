@@ -91,22 +91,22 @@ class _TabHome extends State<TabHome> {
                           )
                       ),
 
-                      SizedBox(
-                          width: double.infinity,
-                          child: Row(
-                            children: [
-                              Expanded( flex: 1, child: Text("4등(${summary.fourthWinners}명)" , textAlign: TextAlign.left) ),
-                            ],
-                          )
-                      ),
-                      SizedBox(
-                          width: double.infinity,
-                          child: Row(
-                            children: [
-                              Expanded( flex: 1, child: Text("5등(${summary.fifthWinners}명)" , textAlign: TextAlign.left) ),
-                            ],
-                          )
-                      ),
+                      // SizedBox(
+                      //     width: double.infinity,
+                      //     child: Row(
+                      //       children: [
+                      //         Expanded( flex: 1, child: Text("4등(${summary.fourthWinners}명)" , textAlign: TextAlign.left) ),
+                      //       ],
+                      //     )
+                      // ),
+                      // SizedBox(
+                      //     width: double.infinity,
+                      //     child: Row(
+                      //       children: [
+                      //         Expanded( flex: 1, child: Text("5등(${summary.fifthWinners}명)" , textAlign: TextAlign.left) ),
+                      //       ],
+                      //     )
+                      // ),
 
             ]
     );
