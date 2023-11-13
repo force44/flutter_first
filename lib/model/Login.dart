@@ -1,7 +1,7 @@
 class Login{
   int id = 0;
   String loginId = "";
-  String nickName = ""; // nickName
+  String nickname = ""; // nickName
   String password = "";
   String token = "";
 
@@ -11,7 +11,7 @@ class Login{
 
   Login.init(this.id
       , this.loginId
-      , this.nickName
+      , this.nickname
       , this.password
       , this.token
       );
@@ -20,7 +20,7 @@ class Login{
     return Login.init(
           json['id']
         , json['loginId']
-        , json['nickName']
+        , json['nickname']
         , json['password']
         , json['token']
     );

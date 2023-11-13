@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void setStorage(Login loginInfo) async{
     await storage.write( key: '_token', value: loginInfo.token);
-    await storage.write( key: '_nickName', value: loginInfo.nickName);
+    await storage.write( key: '_nickName', value: loginInfo.nickname);
   }
 
   @override
@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text("let's get 1st lotto"),
+        title: const Text("only 1st"),
         centerTitle: true,
       ),
       body: Form(
@@ -110,12 +110,12 @@ class _LoginPageState extends State<LoginPage> {
 
                         if(response.statusCode == 200){
                           Login loginInfo = Login.fromJson(jsonDecode(utf8.decode(response.bodyBytes))['data']);
-
-                          print(loginInfo.nickName);
-                          _scaffoldMessenger('welcome! ${ loginInfo.nickName} ');
+                          print("response : $response" );
+                          print(loginInfo.nickname);
+                          _scaffoldMessenger('welcome! ${ loginInfo.nickname} ');
 
                           await storage.write( key: '_token', value: loginInfo.token);
-                          await storage.write( key: '_nickName', value: loginInfo.nickName);
+                          await storage.write( key: '_nickname', value: loginInfo.nickname);
                           if(!mounted) return;
                           //context.read<LoginProvider>().login(loginInfo);
                           Navigator.push(context, MaterialPageRoute(builder: (context) => IndexScreen()));
