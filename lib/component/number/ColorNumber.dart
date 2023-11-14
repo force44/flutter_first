@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 class ColorNumber {
 
-
   static Color getColorOfNumber(int number){
     Color color = const Color(0xfffbc400);
     if(number > 40){
@@ -18,6 +17,4 @@ class ColorNumber {
     }
     return color;
   }
-
-
 }

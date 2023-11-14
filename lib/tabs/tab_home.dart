@@ -91,22 +91,6 @@ class _TabHome extends State<TabHome> {
                           )
                       ),
 
-                      // SizedBox(
-                      //     width: double.infinity,
-                      //     child: Row(
-                      //       children: [
-                      //         Expanded( flex: 1, child: Text("4등(${summary.fourthWinners}명)" , textAlign: TextAlign.left) ),
-                      //       ],
-                      //     )
-                      // ),
-                      // SizedBox(
-                      //     width: double.infinity,
-                      //     child: Row(
-                      //       children: [
-                      //         Expanded( flex: 1, child: Text("5등(${summary.fifthWinners}명)" , textAlign: TextAlign.left) ),
-                      //       ],
-                      //     )
-                      // ),
 
             ]
     );
@@ -195,79 +179,6 @@ class _TabHome extends State<TabHome> {
                                    })
                            ),
 
-                           // Container(
-                           //   margin: const EdgeInsets.fromLTRB(10, 5, 10, 10),
-                           //   padding: const EdgeInsets.all(10.0),
-                           //   decoration: BoxDecoration(
-                           //     color: Colors.white,
-                           //     borderRadius: BorderRadius.circular(10),
-                           //     border: Border.all(color: Colors.black12, width: 1),
-                           //     boxShadow: [
-                           //       BoxShadow(
-                           //         color: Colors.grey.withOpacity(0.5),
-                           //         spreadRadius: 1,
-                           //         blurRadius: 4,
-                           //         offset: Offset(0, 3), // changes position of shadow
-                           //       ),
-                           //     ],
-                           //   ),
-                           //   child: Row(
-                           //     children:  [
-                           //       Expanded(
-                           //           flex: 1,
-                           //           child: Column(
-                           //               children: [
-                           //                 Container(
-                           //                     margin: const EdgeInsets.all(1.0),
-                           //                     child: Text("올해 누적")),
-                           //                 Container(
-                           //                     margin: const EdgeInsets.all(1.0),
-                           //                     child: Text("1002", style: TextStyle(fontWeight:FontWeight.w700))),
-                           //                 Container(
-                           //                     margin: const EdgeInsets.all(1.0),
-                           //                     color: Colors.yellow.shade100,
-                           //                     child: Center( child: Text("52", style: TextStyle(color: Colors.orange))))
-                           //               ]
-                           //           )
-                           //       ),
-                           //       Expanded(
-                           //           flex: 1,
-                           //           child: Column(
-                           //               children: [
-                           //                 Container(
-                           //                     margin: const EdgeInsets.all(1.0),
-                           //                     child: Text("회차 추천")),
-                           //                 Container(
-                           //                     margin: const EdgeInsets.all(1.0),
-                           //                     child: Text("30", style: TextStyle(fontWeight:FontWeight.w700))),
-                           //                 Container(
-                           //                     margin: const EdgeInsets.all(1.0),
-                           //                     color: Colors.yellow.shade100,
-                           //                     child: Center( child: Text("5", style: TextStyle(color: Colors.orange))))
-                           //               ]
-                           //           )
-                           //       ),
-                           //       Expanded(
-                           //           flex: 1,
-                           //           child: Column(
-                           //               children: [
-                           //                 Container(
-                           //                     margin: const EdgeInsets.all(1.0),
-                           //                     child: Text("1072회")),
-                           //                 Container(
-                           //                     margin: const EdgeInsets.all(1.0),
-                           //                     child: Text("40", style: TextStyle(fontWeight:FontWeight.w700))),
-                           //                 Container(
-                           //                     width : 40,
-                           //                     margin: const EdgeInsets.all(1.0),
-                           //                     color: Colors.yellow,
-                           //                     child: Center( child: Text("??", style: TextStyle(color: Colors.orange))))
-                           //               ]
-                           //           )
-                           //       )
-                           //     ],
-                           //   ),
-                           // ),
 
                            Container(
                             margin: const EdgeInsets.all(10.0),
@@ -295,7 +206,6 @@ class _TabHome extends State<TabHome> {
                                          child: CircularProgressIndicator()
                                      );
                                    }
-
                                    // 데이터를 정상적으로 받아오게 되면 다음 부분을 실행하게 되는 부분
                                    else {
                                      return Padding(
@@ -303,9 +213,98 @@ class _TabHome extends State<TabHome> {
                                        child: snapshot.data
                                      );
                                    }
-
-
                                  })
+                           ),
+
+                           //TODO
+                           Container(
+                               margin: const EdgeInsets.fromLTRB(10, 12, 10, 12),
+                               padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
+                               decoration: BoxDecoration(
+                                 color: Colors.white,
+                                 borderRadius: BorderRadius.circular(10),
+                                 border: Border.all(color: Colors.black12, width: 1),
+                               ),
+                               child: Center(
+                                   child: Row(
+                                     children: [
+                                       Expanded(
+                                           flex: 1,
+                                           child : Row ( children: [
+                                             Text("홀짝 : " , style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
+                                             Text(" 0 : 0 ", style: TextStyle(color:Colors.blueAccent, fontWeight:FontWeight.w700) , textAlign:TextAlign.center)
+                                           ])
+                                       ),
+
+                                       Expanded(
+                                           flex: 1,
+                                           child : Row ( children: [
+                                             Text("총합 : " , style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
+                                             Text(" 149 ", style: TextStyle(color:Colors.blueAccent, fontWeight:FontWeight.w700), textAlign:TextAlign.center)
+                                           ])
+                                       ),
+
+                                       Expanded(
+                                           flex: 1,
+                                           child : Row ( children: [
+                                             Text("이월수 : " , style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
+                                             Text(" 1 " , style: TextStyle(color:Colors.blueAccent, fontWeight:FontWeight.w700), textAlign:TextAlign.center),
+                                           ])
+                                       ),
+                                     ],
+                                   )
+                               )
+                           ),
+
+                           Container(
+                               margin: const EdgeInsets.fromLTRB(10, 12, 10, 12),
+                               padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
+                               decoration: BoxDecoration(
+                                 color: Colors.white,
+                                 borderRadius: BorderRadius.circular(10),
+                                 border: Border.all(color: Colors.black12, width: 1),
+                               ),
+                               child:  Column(
+                                   children:  [
+                                     Container(
+                                       margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                       padding: const EdgeInsets.fromLTRB(0,2,0,0),
+                                       // height: 40,
+                                       width: double.infinity,
+                                       // color: Color(0xFFCB742F),
+                                       child: Text("직전 회차 당첨 결과" , style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
+                                     ),
+                                     SizedBox(
+                                         height: 35,
+                                         child: Center(
+                                           child: Row(
+                                               children: [
+                                                 Expanded(
+                                                     flex: 1,
+                                                     child : Text("1(0) ", style: TextStyle(color:Colors.deepPurpleAccent),  textAlign:TextAlign.center)
+                                                 ),
+                                                 Expanded(
+                                                     flex: 1,
+                                                     child : Text("2(0) ", style: TextStyle(color:Colors.orangeAccent), textAlign:TextAlign.center)
+                                                 ),
+                                                 Expanded(
+                                                     flex: 1,
+                                                     child : Text("3(0) ", style: TextStyle(color:Colors.greenAccent), textAlign:TextAlign.center)
+                                                 ),
+                                                 Expanded(
+                                                     flex: 1,
+                                                     child : Text("4(3) ", style: TextStyle(color:Colors.blueAccent), textAlign:TextAlign.center)
+                                                 ),
+                                                 Expanded(
+                                                     flex: 1,
+                                                     child : Text("5(120) ", style: TextStyle(color:Colors.redAccent), textAlign:TextAlign.center)
+                                                 ),
+                                               ]
+                                           ),
+                                         )
+                                     ),
+                                   ]
+                               )
                            )
                          ]
              )
