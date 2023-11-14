@@ -98,7 +98,7 @@ class _TabProfile extends State<TabProfile>{
                                           },
                                           style: OutlinedButton.styleFrom(foregroundColor: Colors.blueAccent),
                                           child: Center(
-                                              child: Text('검색s', style: TextStyle(fontWeight:FontWeight.w800, color: Colors.blueAccent))
+                                              child: Text('검색', style: TextStyle(fontWeight:FontWeight.w800, color: Colors.blueAccent))
                                           )
                                       )
 

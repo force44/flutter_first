@@ -17,6 +17,7 @@ class Login{
       );
 
   factory Login.fromJson(Map<String, dynamic> json) {
+    print(json);
     return Login.init(
           json['id']
         , json['loginId']

@@ -66,8 +66,8 @@ class _TabLuck extends State<TabLuck> {
                                               builder: (BuildContext context, AsyncSnapshot snapshot) {
                                                 return  SizedBox(
                                                               width: double.infinity,
-                                                              child: Text( "${snapshot.data} 회차"
-                                                                  , style: TextStyle(fontWeight:FontWeight.w600, fontSize: 20, color: Colors.orangeAccent)
+                                                              child: Text( "${snapshot.data} 회차 가즈아!"
+                                                                  , style: TextStyle(fontWeight:FontWeight.w600, fontSize: 22, color: Colors.orange[800])
                                                                   , textAlign: TextAlign.left)
                                                           );
 
@@ -92,73 +92,89 @@ class _TabLuck extends State<TabLuck> {
                                         ),
                                       ],
                                     ),
-                                    child: Row(
+                                    child: Column(
                                       children: [
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Container(
-                                                      //width: 80,
-                                                      //margin: const EdgeInsets.all(5.0),
-                                                      child: DropdownButton(
-                                                        value: seed,
-                                                        items: _valueList.keys.map((key) {
-                                                          return DropdownMenuItem(
-                                                            value: key,
-                                                            child: Text(_valueList[key]!),
-                                                          );
-                                                        }).toList(),
-                                                        onChanged: (value) {
-                                                          setState(() {
-                                                            seed = value!;
-                                                          });
+                                        Row(
+                                            children: const [
+                                              Expanded(flex: 1, child: Text( "조합" ,   style: TextStyle(color: Colors.black87, fontSize: 12))),
+                                              Expanded(flex: 1, child: Text( "from",  style: TextStyle(color: Colors.black87, fontSize: 12))),
+                                              Expanded(flex: 1, child: Text( "to" , style: TextStyle(color: Colors.black87, fontSize: 12))),
+                                              Expanded(flex: 2, child: Text( "") )
+                                            ],
+                                        ),
+
+                                        Row(
+                                            children: [
+                                              Expanded(
+                                                  flex: 1,
+                                                  child: DropdownButton(
+                                                    value: seed,
+                                                    items: _valueList.keys.map((key) {
+                                                      return DropdownMenuItem(
+                                                        value: key,
+                                                        child: Text(_valueList[key]!),
+                                                      );
+                                                    }).toList(),
+                                                    onChanged: (value) {
+                                                      setState(() {
+                                                        seed = value!;
+                                                      });
+                                                    },
+                                                  )
+                                              ),
+
+                                              Expanded(
+                                                  flex: 1,
+                                                  child: TextField(
+                                                      onChanged: (text) {
+                                                        setState(() {
+                                                          from = text;
+                                                        });
+                                                      }
+                                                      , keyboardType: TextInputType.number
+                                                      , maxLength : 4
+                                                      //, decoration: InputDecoration( labelText: 'from')
+                                                  )
+                                              ),
+
+                                              Expanded(
+                                                  flex: 1,
+                                                  child: TextField(
+                                                      onChanged: (text) {
+                                                        setState(() {
+                                                          to = text;
+                                                        });
+                                                      }
+                                                      , keyboardType: TextInputType.number
+                                                      , maxLength : 4
+                                                      //, decoration: InputDecoration( labelText: 'to')
+                                                  )
+                                              ),
+
+                                              Expanded(
+                                                  flex: 2,
+                                                  child: Container(
+                                                      margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                                      height: 70,
+                                                      child: OutlinedButton(
+                                                        onPressed: () {
+                                                          context.read<LottoStatProvider>().suggestionLotto(from, to, seed);
                                                         },
-                                                      ),
-                                                    )
-                                                  ),
+                                                        style: OutlinedButton.styleFrom(foregroundColor: Color(0xFFFF8A80)),
+                                                        child: Row(
+                                                            children: const [
+                                                              Icon(Icons.star),
+                                                              Text( '가즈아', style: TextStyle(fontWeight:FontWeight.w900))
 
-                                                  Expanded(
-                                                      flex: 1,
-                                                      child: TextField(
-                                                          onChanged: (text) {
-                                                            setState(() {
-                                                              from = text;
-                                                            });
-                                                          }
-                                                          , keyboardType: TextInputType.number
-                                                          , maxLength : 4
-                                                          , decoration: InputDecoration( labelText: 'from')
-                                                      )
-                                                  ),
-
-                                                  Expanded(
-                                                      flex: 1,
-                                                      child: TextField(
-                                                          onChanged: (text) {
-                                                            setState(() {
-                                                              to = text;
-                                                            });
-                                                          }
-                                                          , keyboardType: TextInputType.number
-                                                          , maxLength : 4
-                                                          , decoration: InputDecoration( labelText: 'to')
-                                                      )
-                                                  ),
-                                                  Expanded(
-                                                      flex: 3,
-                                                      child: Container(
-                                                        margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                                        height: 70,
-                                                        child: OutlinedButton(
-                                                              onPressed: () {
-                                                                context.read<LottoStatProvider>().suggestionLotto(from, to, seed);
-                                                              },
-                                                              style: OutlinedButton.styleFrom(foregroundColor: Color(0xFFFF8A80)),
-                                                              child: Center( child: Text( 'Good\nLuck☆', style: TextStyle(fontWeight:FontWeight.w900) )),
-                                                              )
+                                                            ]
+                                                        ),
                                                       )
                                                   )
-                                                ]
-                                            )
+                                              )
+                                            ]
+                                        )
+                                      ],
+                                    )
                                   ),
                                   Container(
                                       margin: const EdgeInsets.all(10.0),
@@ -190,16 +206,17 @@ class _TabLuck extends State<TabLuck> {
                                                     flex: 1,
                                                     child:  Column(
                                                       children: [
-                                                        OutlinedButton(
+                                                        TextButton(
                                                             onPressed: () {
                                                               context.read<LottoStatProvider>().saveLotto();
                                                             },
-                                                            style: OutlinedButton.styleFrom(foregroundColor: Colors.blueAccent),
-                                                            child: Center( child: Text( 'Save', style: TextStyle(fontWeight:FontWeight.w900) ))
+                                                            style: OutlinedButton.styleFrom(foregroundColor: Color(0xFFFF8A80)),
+                                                            child: Icon(Icons.save, size: 30)
+
                                                         ),
                                                         Text("count : ${context.watch<LottoStatProvider>().count}"
-                                                            , style: TextStyle(fontWeight:FontWeight.w400, )
-                                                            , textAlign:TextAlign.center),
+                                                            , style: TextStyle(fontWeight:FontWeight.w400)
+                                                            )
                                                       ],
                                                     )
                                                 ),
@@ -332,12 +349,27 @@ class _TabLuck extends State<TabLuck> {
                                       child:  Column(
                                           crossAxisAlignment :  CrossAxisAlignment.start,
                                           children:  const [
-                                            Text("로또 분석 리포트로", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w800, fontSize: 14), textAlign: TextAlign.right),
-                                            Text("0.1%의 확률을 높여보아요", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w800, fontSize: 14)),
-                                            SizedBox(height: 10.0),
+                                            Row(
+                                              children: [
+                                                Column(
+                                                    crossAxisAlignment :  CrossAxisAlignment.start,
+                                                    children : [
+                                                      Text("로또 분석 리포트로", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w800, fontSize: 14), textAlign:TextAlign.left),
+                                                      Text("0.1%의 확률을 높여보아요", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w800, fontSize: 14)),
+                                                    ]
+                                                ),
+                                                SizedBox(width: 50.0),
+                                                Icon(Icons.thumb_up_alt , size: 36, color: Colors.white,)
+                                              ],
+                                            ),
 
-                                            Text("홀짝은 편중되지 않고 번호의 총합은 120~180으로 분포된다.", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w400, fontSize: 11)),
-                                            Text("나온 결과를 보고 Skip 하자!", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w400, fontSize: 11))
+                                            // trending_up
+
+                                            SizedBox(height: 15.0),
+                                            Text("랜덤하게 조합에서 출현 횟수에 대한 '가중치'로 예측을 합니다.", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w400, fontSize: 11)),
+                                            Text("홀짝은 편중되지 않고 번호의 총합은 120~180으로 분포됩니다.", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w400, fontSize: 11)),
+                                            Text("추천된 번호를 보고 저장을 하거나 Skip!!", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w400, fontSize: 11)),
+
                                           ]
                                       )
                                   ),

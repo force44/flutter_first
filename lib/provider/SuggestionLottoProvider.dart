@@ -19,7 +19,6 @@ class SuggestionLottoProvider with ChangeNotifier {
    List get suggestionLotto => _list;
    int pageSize = 20;
 
-
   void requestSuggestionList(String turn, String type, bool add) async {
 
     if(!add){
@@ -57,12 +56,10 @@ class SuggestionLottoProvider with ChangeNotifier {
 
       //var response = await HttpUtils.post("/lotto-suggestion/list", paramData);
     }
-
   }
 
    void listner(ScrollUpdateNotification notification) {
      if (notification.metrics.maxScrollExtent == notification.metrics.pixels) {
-       print(notification.metrics.pixels);
        _addItem();
      }
    }

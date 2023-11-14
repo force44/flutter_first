@@ -106,7 +106,10 @@ class _LoginPageState extends State<LoginPage> {
                       }
 
                       try{
+                        print("response");
                         var response =  await HttpUtils.login(paramData);
+
+                        print(response);
 
                         if(response.statusCode == 200){
                           Login loginInfo = Login.fromJson(jsonDecode(utf8.decode(response.bodyBytes))['data']);
