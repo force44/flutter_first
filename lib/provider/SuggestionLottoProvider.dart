@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_first/component/utils/HttpUtils.dart';
+import 'package:lotto/component/utils/HttpUtils.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 

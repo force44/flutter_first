@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_first/component/utils/HttpUtils.dart';
+import 'package:lotto/component/utils/HttpUtils.dart';
 import 'dart:convert';
 import '../model/Lotto.dart';
 

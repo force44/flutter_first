@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_first/component/number/SuggestionNumber.dart';
-import 'package:flutter_first/provider/SuggestionLottoProvider.dart';
+import 'package:lotto/component/number/SuggestionNumber.dart';
+import 'package:lotto/provider/SuggestionLottoProvider.dart';
 import 'package:provider/provider.dart';
 
 class TabProfile extends StatefulWidget {

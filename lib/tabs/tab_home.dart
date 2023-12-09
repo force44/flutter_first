@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_first/provider/WinLottoProvider.dart';
+import 'package:lotto/provider/WinLottoProvider.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 
@@ -217,95 +217,95 @@ class _TabHome extends State<TabHome> {
                            ),
 
                            //TODO
-                           Container(
-                               margin: const EdgeInsets.fromLTRB(10, 12, 10, 12),
-                               padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
-                               decoration: BoxDecoration(
-                                 color: Colors.white,
-                                 borderRadius: BorderRadius.circular(10),
-                                 border: Border.all(color: Colors.black12, width: 1),
-                               ),
-                               child: Center(
-                                   child: Row(
-                                     children: [
-                                       Expanded(
-                                           flex: 1,
-                                           child : Row ( children: [
-                                             Text("홀짝 : " , style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
-                                             Text(" 0 : 0 ", style: TextStyle(color:Colors.blueAccent, fontWeight:FontWeight.w700) , textAlign:TextAlign.center)
-                                           ])
-                                       ),
+                           // Container(
+                           //     margin: const EdgeInsets.fromLTRB(10, 12, 10, 12),
+                           //     padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
+                           //     decoration: BoxDecoration(
+                           //       color: Colors.white,
+                           //       borderRadius: BorderRadius.circular(10),
+                           //       border: Border.all(color: Colors.black12, width: 1),
+                           //     ),
+                           //     child: Center(
+                           //         child: Row(
+                           //           children: [
+                           //             Expanded(
+                           //                 flex: 1,
+                           //                 child : Row ( children: [
+                           //                   Text("홀짝 : " , style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
+                           //                   Text(" 0 : 0 ", style: TextStyle(color:Colors.blueAccent, fontWeight:FontWeight.w700) , textAlign:TextAlign.center)
+                           //                 ])
+                           //             ),
+                           //
+                           //             Expanded(
+                           //                 flex: 1,
+                           //                 child : Row ( children: [
+                           //                   Text("총합 : " , style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
+                           //                   Text(" 149 ", style: TextStyle(color:Colors.blueAccent, fontWeight:FontWeight.w700), textAlign:TextAlign.center)
+                           //                 ])
+                           //             ),
+                           //
+                           //             Expanded(
+                           //                 flex: 1,
+                           //                 child : Row ( children: [
+                           //                   Text("이월수 : " , style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
+                           //                   Text(" 1 " , style: TextStyle(color:Colors.blueAccent, fontWeight:FontWeight.w700), textAlign:TextAlign.center),
+                           //                 ])
+                           //             ),
+                           //           ],
+                           //         )
+                           //     )
+                           // ),
 
-                                       Expanded(
-                                           flex: 1,
-                                           child : Row ( children: [
-                                             Text("총합 : " , style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
-                                             Text(" 149 ", style: TextStyle(color:Colors.blueAccent, fontWeight:FontWeight.w700), textAlign:TextAlign.center)
-                                           ])
-                                       ),
-
-                                       Expanded(
-                                           flex: 1,
-                                           child : Row ( children: [
-                                             Text("이월수 : " , style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
-                                             Text(" 1 " , style: TextStyle(color:Colors.blueAccent, fontWeight:FontWeight.w700), textAlign:TextAlign.center),
-                                           ])
-                                       ),
-                                     ],
-                                   )
-                               )
-                           ),
-
-                           Container(
-                               margin: const EdgeInsets.fromLTRB(10, 12, 10, 12),
-                               padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
-                               decoration: BoxDecoration(
-                                 color: Colors.white,
-                                 borderRadius: BorderRadius.circular(10),
-                                 border: Border.all(color: Colors.black12, width: 1),
-                               ),
-                               child:  Column(
-                                   children:  [
-                                     Container(
-                                       margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                       padding: const EdgeInsets.fromLTRB(0,2,0,0),
-                                       // height: 40,
-                                       width: double.infinity,
-                                       // color: Color(0xFFCB742F),
-                                       child: Text("직전 회차 당첨 결과" , style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
-                                     ),
-                                     SizedBox(
-                                         height: 35,
-                                         child: Center(
-                                           child: Row(
-                                               children: [
-                                                 Expanded(
-                                                     flex: 1,
-                                                     child : Text("1(0) ", style: TextStyle(color:Colors.deepPurpleAccent),  textAlign:TextAlign.center)
-                                                 ),
-                                                 Expanded(
-                                                     flex: 1,
-                                                     child : Text("2(0) ", style: TextStyle(color:Colors.orangeAccent), textAlign:TextAlign.center)
-                                                 ),
-                                                 Expanded(
-                                                     flex: 1,
-                                                     child : Text("3(0) ", style: TextStyle(color:Colors.greenAccent), textAlign:TextAlign.center)
-                                                 ),
-                                                 Expanded(
-                                                     flex: 1,
-                                                     child : Text("4(3) ", style: TextStyle(color:Colors.blueAccent), textAlign:TextAlign.center)
-                                                 ),
-                                                 Expanded(
-                                                     flex: 1,
-                                                     child : Text("5(120) ", style: TextStyle(color:Colors.redAccent), textAlign:TextAlign.center)
-                                                 ),
-                                               ]
-                                           ),
-                                         )
-                                     ),
-                                   ]
-                               )
-                           )
+                           // Container(
+                           //     margin: const EdgeInsets.fromLTRB(10, 12, 10, 12),
+                           //     padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
+                           //     decoration: BoxDecoration(
+                           //       color: Colors.white,
+                           //       borderRadius: BorderRadius.circular(10),
+                           //       border: Border.all(color: Colors.black12, width: 1),
+                           //     ),
+                           //     child:  Column(
+                           //         children:  [
+                           //           Container(
+                           //             margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                           //             padding: const EdgeInsets.fromLTRB(0,2,0,0),
+                           //             // height: 40,
+                           //             width: double.infinity,
+                           //             // color: Color(0xFFCB742F),
+                           //             child: Text("직전 회차 당첨 결과" , style: TextStyle(fontWeight:FontWeight.w800), textAlign:TextAlign.center),
+                           //           ),
+                           //           SizedBox(
+                           //               height: 35,
+                           //               child: Center(
+                           //                 child: Row(
+                           //                     children: [
+                           //                       Expanded(
+                           //                           flex: 1,
+                           //                           child : Text("1(0) ", style: TextStyle(color:Colors.deepPurpleAccent),  textAlign:TextAlign.center)
+                           //                       ),
+                           //                       Expanded(
+                           //                           flex: 1,
+                           //                           child : Text("2(0) ", style: TextStyle(color:Colors.orangeAccent), textAlign:TextAlign.center)
+                           //                       ),
+                           //                       Expanded(
+                           //                           flex: 1,
+                           //                           child : Text("3(0) ", style: TextStyle(color:Colors.greenAccent), textAlign:TextAlign.center)
+                           //                       ),
+                           //                       Expanded(
+                           //                           flex: 1,
+                           //                           child : Text("4(3) ", style: TextStyle(color:Colors.blueAccent), textAlign:TextAlign.center)
+                           //                       ),
+                           //                       Expanded(
+                           //                           flex: 1,
+                           //                           child : Text("5(120) ", style: TextStyle(color:Colors.redAccent), textAlign:TextAlign.center)
+                           //                       ),
+                           //                     ]
+                           //                 ),
+                           //               )
+                           //           ),
+                           //         ]
+                           //     )
+                           // )
                          ]
              )
       );

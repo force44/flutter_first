@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_first/page/login/login_page.dart';
-import 'package:flutter_first/provider/LoginProvider.dart';
-import 'package:flutter_first/provider/LottoStatProvider.dart';
-import 'package:flutter_first/provider/SuggestionLottoProvider.dart';
-import 'package:flutter_first/provider/WinLottoProvider.dart';
+import 'package:lotto/page/login/login_page.dart';
+import 'package:lotto/provider/LoginProvider.dart';
+import 'package:lotto/provider/LottoStatProvider.dart';
+import 'package:lotto/provider/SuggestionLottoProvider.dart';
+import 'package:lotto/provider/WinLottoProvider.dart';
 import 'screen_index.dart';
 import 'package:provider/provider.dart';
 

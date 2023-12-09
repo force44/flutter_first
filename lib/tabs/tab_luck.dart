@@ -66,7 +66,7 @@ class _TabLuck extends State<TabLuck> {
                                               builder: (BuildContext context, AsyncSnapshot snapshot) {
                                                 return  SizedBox(
                                                               width: double.infinity,
-                                                              child: Text( "${snapshot.data} 회차 가즈아!"
+                                                              child: Text( "${snapshot.data} 회차 갑시다!"
                                                                   , style: TextStyle(fontWeight:FontWeight.w600, fontSize: 22, color: Colors.orange[800])
                                                                   , textAlign: TextAlign.left)
                                                           );
@@ -152,7 +152,7 @@ class _TabLuck extends State<TabLuck> {
                                               ),
 
                                               Expanded(
-                                                  flex: 2,
+                                                  flex: 1,
                                                   child: Container(
                                                       margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                                                       height: 70,
@@ -164,8 +164,8 @@ class _TabLuck extends State<TabLuck> {
                                                         child: Row(
                                                             children: const [
                                                               Icon(Icons.star),
-                                                              Text( '가즈아', style: TextStyle(fontWeight:FontWeight.w900))
-
+                                                              Text( ' 제발 가즈아 ', style: TextStyle(fontWeight:FontWeight.w900)),
+                                                              Icon(Icons.star)
                                                             ]
                                                         ),
                                                       )
@@ -366,9 +366,9 @@ class _TabLuck extends State<TabLuck> {
                                             // trending_up
 
                                             SizedBox(height: 15.0),
-                                            Text("랜덤하게 조합에서 출현 횟수에 대한 '가중치'로 예측을 합니다.", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w400, fontSize: 11)),
-                                            Text("홀짝은 편중되지 않고 번호의 총합은 120~180으로 분포됩니다.", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w400, fontSize: 11)),
-                                            Text("추천된 번호를 보고 저장을 하거나 Skip!!", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w400, fontSize: 11)),
+                                            Text("랜덤하게 조합된 번호에 출현 횟수를 '가중치'로 예측 합니다.", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w400, fontSize: 11)),
+                                            Text("홀짝은 편중되지 않고 번호의 총합은 120~180으로 분포 된다고 하네요.", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w400, fontSize: 11)),
+                                            Text("계산된 수치를 확인하고 좋은 느낌의 조합번호를 저장", style: TextStyle(color: Colors.white, fontWeight:FontWeight.w400, fontSize: 11)),
 
                                           ]
                                       )

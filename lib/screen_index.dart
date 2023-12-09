@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_first/tabs/tab_luck.dart';
+import 'package:lotto/tabs/tab_luck.dart';
 import 'tabs/tab_home.dart';
 import 'tabs/tab_search.dart';
 import 'tabs/tab_profile.dart';
